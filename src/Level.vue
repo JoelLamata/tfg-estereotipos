@@ -1,9 +1,6 @@
 <script setup>
 import poligon from './Poligons.vue'
 const props = defineProps(['image', 'placeholder'])
-
-const path = new URL(`./`, import.meta.url);
-const imageSrc = `${path}/${props.image}`
 </script>
 
 <template>

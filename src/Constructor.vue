@@ -1,12 +1,11 @@
-<script>
-// import Level from './Level.vue'
-import JuguetesParaNiñas from './images/JuguetesParaNiñas.png'
-import green from './images/green.png'
-import mujerExitosa from './images/mujer-exitosa.png'
+<script setup>
+import Level from './Level.vue'
+import Database from './Database.vue'
 
-const images = [JuguetesParaNiñas, green, mujerExitosa]
-
-export default{
-    images
-}
+const props = defineProps(['levelNum'])
 </script>
+
+<template>
+    <Level v-if="levelNum == 1" placeholder="Juguete para niñas" :image="Database.images[1]"></Level>
+    <Level v-if="levelNum == 2" placeholder="Juguete para niñas" :image="Database.images[0]"/>
+</template>

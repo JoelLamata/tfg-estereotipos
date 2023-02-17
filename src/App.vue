@@ -1,12 +1,17 @@
 <script setup>
-import Level from './Level.vue'
+import { ref } from 'vue'
 import Constructor from './Constructor.vue'
 
-let isLevel = false;
+const levelNum = ref(2);
+const isLevel = ref(false);
 </script>
 
 <template>
-  <Level placeholder="Juguete para niñas" :image="Constructor.images[0]"/>
+  <button v-show="!isLevel" @click="isLevel = true">Start</button>
+  <div v-show="isLevel">
+    <Constructor :levelNum="levelNum"></Constructor>
+    <button @click="isLevel = false">Back</button>
+  </div>
 </template>
 
 <style>

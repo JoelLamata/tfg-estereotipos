@@ -6,6 +6,6 @@ import mujerExitosa from './images/mujer-exitosa.png'
 const images = [JuguetesParaNiñas, green, mujerExitosa]
 
 export default{
-    images: images
+    images
 }
 </script>
