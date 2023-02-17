@@ -1,11 +1,12 @@
 <script setup>
+import Level from './Level.vue'
 import Constructor from './Constructor.vue'
 
 let isLevel = false;
 </script>
 
 <template>
-  <Constructor/>
+  <Level placeholder="Juguete para niñas" :image="Constructor.images[0]"/>
 </template>
 
 <style>
