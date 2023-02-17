@@ -1,0 +1,364 @@
+.container{
+    background: #e0e0eb;
+    padding: 10px;
+    height: 400px;
+    width: 100%;
+    margin-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .title{
+    text-align: center;
+    text-transform: uppercase;
+    font-family: 'Arial', sans-serif;
+    color: #28283e;
+    background:  #c1c1d7;
+    padding:5px;
+    margin: 0;
+  }
+  
+  .shape{
+    background: #63639c;
+    margin: 10% auto 0;
+  }
+  
+  /* Cuadrado */
+  #cuadrado {
+      width: 200px;
+      height: 200px;
+  }
+  
+  /* Rectángulo */
+  #rectangulo {
+      width: 300px;
+      height: 200px;
+  }
+  
+  /* Círculo */
+  #circulo {
+      width: 200px;
+      height: 200px;
+      -moz-border-radius: 50%;
+      -webkit-border-radius: 50%;
+      border-radius: 50%;
+  }
+  
+  /* si el tamaño del círculo está en pixeles, puedes usar en vez del valor 50%, la mitad del valor en pixeles, en este caso sería 100px y funcionará igual */
+  
+  /* Óvalo */
+  #ovalo {
+      width: 300px;
+      height: 200px;
+      -moz-border-radius: 50%;
+      -webkit-border-radius: 50%;
+      border-radius: 50%;
+  }
+  
+  #triangulo {
+      width: 0;
+      height: 0;
+    background: transparent;
+      border-left: 100px solid transparent;
+      border-right: 100px solid transparent;
+      border-bottom: 200px solid #63639c; /* El color de la figura lo determina el color de este borde*/
+  }
+  
+  /* Triangulo invertido*/
+  #triangulo-invertido {
+      width: 0;
+      height: 0;
+    background: transparent;
+      border-left: 100px solid transparent;
+      border-right: 100px solid transparent;
+      border-top: 200px solid #63639c;/*Al cambiar este valor por border-top es como invertimos la punta de la figura*/
+  }
+  
+  /*Triángulo hacia la izquierda */
+  #triangulo-izquierda {
+      width: 0;
+      height: 0;
+    background: transparent;
+      border-top: 100px solid transparent;
+      border-right: 200px solid #63639c;
+      border-bottom: 100px solid transparent;
+  }
+  
+  /*Triángulo hacia la derecha */
+  #triangulo-derecha {
+      width: 0;
+      height: 0;
+    background: transparent;
+      border-top: 100px solid transparent;
+      border-left: 200px solid #63639c; /* Al cambiar este valor a border-left, cambiamos la dirección del triángulo*/
+      border-bottom: 100px solid transparent;
+  }
+  
+  /*Estrella*/
+  #estrella-5 {
+     margin: 150px auto;
+     position: relative;
+     display: block;
+     color: #63639c;
+    background: transparent;
+     width: 0px;
+     height: 0px;
+     border-right:  100px solid transparent;
+     border-bottom: 70px  solid #63639c;
+     border-left:   100px solid transparent;
+     -moz-transform:    rotate(35deg);
+     -webkit-transform: rotate(35deg);
+     -ms-transform:     rotate(35deg);
+     -o-transform:      rotate(35deg);
+  }
+  #estrella-5::before {
+     border-bottom: 80px solid #63639c;
+     border-left: 30px solid transparent;
+     border-right: 30px solid transparent;
+     position: absolute;
+     height: 0;
+     width: 0;
+     top: -45px;
+     left: -65px;
+     display: block;
+     content: '';
+     -webkit-transform: rotate(-35deg);
+     -moz-transform:    rotate(-35deg);
+     -ms-transform:     rotate(-35deg);
+     -o-transform:      rotate(-35deg);
+  
+  }
+  #estrella-5::after  {
+     position: absolute;
+     display: block;
+     color: red;
+     top: 3px;
+     left: -105px;
+     width: 0px;
+     height: 0px;
+     border-right: 100px solid transparent;
+     border-bottom: 70px solid #63639c;
+     border-left: 100px solid transparent;
+     -webkit-transform: rotate(-70deg);
+     -moz-transform:    rotate(-70deg);
+     -ms-transform:     rotate(-70deg);
+     -o-transform:      rotate(-70deg);
+     content: '';
+  }
+  
+  /* Corazón */
+  #corazon {
+      position: relative;
+      width: 200px;
+      height: 180px;
+    background: transparent;
+  }
+  #corazon::before,
+  #corazon::after {
+      position: absolute;
+      content: "";
+      left: 90px;
+      top: 0;
+      width: 90px;
+      height: 150px;
+      background: #63639c;
+      -moz-border-radius: 50px 50px 0 0;
+      border-radius: 50px 50px 0 0;
+      -webkit-transform: rotate(-45deg);
+         -moz-transform: rotate(-45deg);
+          -ms-transform: rotate(-45deg);
+           -o-transform: rotate(-45deg);
+              transform: rotate(-45deg);
+      -webkit-transform-origin: 0 100%;
+         -moz-transform-origin: 0 100%;
+          -ms-transform-origin: 0 100%;
+           -o-transform-origin: 0 100%;
+              transform-origin: 0 100%;
+  }
+  #corazon::after {
+      left: 0;
+      -webkit-transform: rotate(45deg);
+         -moz-transform: rotate(45deg);
+          -ms-transform: rotate(45deg);
+           -o-transform: rotate(45deg);
+              transform: rotate(45deg);
+      -webkit-transform-origin: 100% 100%;
+         -moz-transform-origin: 100% 100%;
+          -ms-transform-origin: 100% 100%;
+           -o-transform-origin: 100% 100%;
+              transform-origin :100% 100%;
+  }
+  
+  /* Rombo*/
+  
+  #rombo {
+      width: 0;
+      height: 0;
+      border: 100px solid transparent;
+      border-bottom-color: #63639c;
+      position: relative;
+    background: transparent;
+      top: -100px;
+  }
+  #rombo:after {
+      content: '';
+      position: absolute;
+      left: -100px;
+      top: 100px;
+      width: 0;
+      height: 0;
+      border: 100px solid transparent;
+      border-top-color: #63639c;
+  }
+      
+  /* Estrella de 12 picos */
+  
+  #estrella-12 {
+      background: #63639c;
+      width: 150px;
+      height: 150px;
+      position: relative;
+      text-align: center;
+  }
+  #estrella-12::before, #estrella-12:after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 150px;
+      width: 150px;
+      background: #63639c;
+  }
+  #estrella-12::before {
+      -webkit-transform: rotate(30deg);
+         -moz-transform: rotate(30deg);
+          -ms-transform: rotate(30deg);
+           -o-transform: rotate(30deg);
+  }
+  #estrella-12::after {
+      -webkit-transform: rotate(60deg);
+         -moz-transform: rotate(60deg);
+          -ms-transform: rotate(60deg);
+           -o-transform: rotate(60deg);
+  }
+  
+  /* Lupa*/
+  
+  #lupa{
+   font-size: 18em; /* Este valor controla el tamaño. */
+   display: block;
+   background: transparent;
+   width: 0.4em;
+   height: 0.4em;
+   border: 0.1em solid #63639c;
+   position: relative;
+   border-radius: 0.35em;
+   text-align: center;
+  }
+  #lupa::before
+  {
+   content: "";
+   display: inline-block;
+   position: absolute;
+   right: -0.25em;
+   bottom: -0.1em;
+   border-width: 0;
+   background: #63639c;
+   width: 0.35em;
+   height: 0.08em;
+   -webkit-transform: rotate(45deg);
+      -moz-transform: rotate(45deg);
+       -ms-transform: rotate(45deg);
+        -o-transform: rotate(45deg);
+  }
+  
+  /* Cruz */
+  
+  #cruz {
+    background: #63639c;
+    height: 200px;
+    position: relative;
+    width: 40px;
+  }
+  #cruz::after {
+    background: #63639c;
+    content: "";
+    height: 40px;
+    left: -80px;
+    position: absolute;
+    top: 80px;
+    width: 200px;
+  }
+  
+  /*Pentágono*/
+  #pentagono {
+      position: relative;
+    background: transparent;
+      width: 150px;
+      border-width: 120px 58px 0;
+      border-style: solid;
+      border-color: #63639c transparent;
+    margin-top: 150px;
+  }
+  #pentagono::before {
+      content: "";
+      position: absolute;
+      height: 0;
+      width: 0;
+      top: -230px;
+      left: -58px;
+      border-width: 0 133px 110px;
+      border-style: solid;
+      border-color: transparent transparent #63639c;
+  }
+  
+     
+  /*Hexágono*/
+  #hexagono {
+      width: 200px;
+      height: 105px;
+      background: #63639c;
+      position: relative;
+  }
+  #hexagono::before {
+      content: "";
+      position: absolute;
+      top: -50px;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-left: 100px solid transparent;
+      border-right: 100px solid transparent;
+      border-bottom: 50px solid #63639c;
+  }
+  #hexagono:after {
+      content: "";
+      position: absolute;
+      bottom: -50px;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-left: 100px solid transparent;
+      border-right: 100px solid transparent;
+      border-top: 50px solid #63639c;
+  }
+  
+  /* Paralelograma */
+  #paralelograma {
+      width: 200px;
+      height: 150px;
+      -webkit-transform: skew(20deg);
+         -moz-transform: skew(20deg);
+           -o-transform: skew(20deg);
+      background: #63639c;
+  }
+  
+  /* Triángulo Esquina */
+  #triangulo-esquina{
+      width: 0;
+      height: 0;
+      border-top: 200px solid #63639c;
+      border-left: 200px solid transparent;
+    background: transparent;
+  /* Si cambias los valores de border-top y border-left a border-bottom o border-right puedes hacer que el triángulo apunte a las esquinas contrarias*/
+  }
