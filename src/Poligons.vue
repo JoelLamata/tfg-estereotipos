@@ -1,30 +1,17 @@
-<script>
-export default{
-    data() {
-        return {
-            position: [ 50, 50 ]
-            // zone: {
-            //     x: 200,
-            //     y: 200,
-            //     width: 100,
-            //     height: 100
-            // },
-        };
-    },
-    methods: {
-        getPos(){
-            this.position = [this.$refs.poligon.getBoundingClientRect().left, this.$refs.poligon.getBoundingClientRect().top];
-            console.log("Posicion del poligono: ", this.position);
-            return this.position;
-        }
-    }
+<script setup>
+const props = defineProps(['poliForm', 'text'])
+
+function getPos(e){
+    let position = [e.target.getBoundingClientRect().left, e.target.getBoundingClientRect().top];
+    console.log("Posicion del poligono: ", position);
+    return position;
 }
 </script>
 
 <template>
-    <div class="poligon" v-drag @v-drag-end="getPos()" ref="poligon" >
-        <img src="./images/green.png" width="100" height="100" class="image">
-        <div class="text">Color rosa</div>
+     <div class="poligon" v-drag>
+        <img src="./images/green.png" width="100" height="100" :style="{'clip-path': props.poliForm}">
+        <div class="text">{{props.text}}</div>
     </div>
 </template>
 

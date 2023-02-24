@@ -1,6 +1,27 @@
 <script setup>
+import { ref } from 'vue'
 import poligon from './Poligons.vue'
-const props = defineProps(['image', 'placeholder'])
+import Database from './Database.vue'
+const props = defineProps(['image', 'placeholder', 'poliForm', 'badPoliForm', 'poliNum', 'badPoliNum', 'poliText', 'badPoliText', 'levelNum'])
+
+
+function setPoints(){
+    Database.Levels[props.levelNum]['points'] = 1;
+}
+
+function isOnSquare(e){ //Cambiar nombre?
+    let poligonPosition = e.target.getBoundingClientRect();
+    let basuraPosition = document.getElementsByClassName('basura').item(0).getBoundingClientRect();
+
+    if (poligonPosition.right >= basuraPosition.left &&
+        poligonPosition.left <= basuraPosition.right &&
+        poligonPosition.bottom >= basuraPosition.top &&
+        poligonPosition.top <= basuraPosition.bottom) {
+        console.log("Los objetos se están tocando.");
+    } else {
+        console.log("Los objetos no se están tocando.");
+    }
+}
 </script>
 
 <template>
@@ -9,24 +30,35 @@ const props = defineProps(['image', 'placeholder'])
             <input type="search" :placeholder="props.placeholder" class="search_input" disabled>
             <img :src="props.image" class="left-fit">
         </div>
-        <div>
-            <poligon/>
+        <div class="poligons">
+            <div v-for="i in props.poliNum">
+                <poligon :poliForm="props.poliForm" :text="props.poliText[i - 1]" @click="isOnSquare"/>
+            </div>
+            <div v-for="i in props.badPoliNum">
+                <poligon :poliForm="props.badPoliForm" :text="props.badPoliText[i - 1]" @click="isOnSquare"/>
+            </div>
+            <div class="basura">
+                <p>Hola</p>
+            </div>
+        </div>
+        <div class="submit">
+            <button @click="setPoints()">Submit</button>
         </div>
     </div>
 </template>
 
 <style>
-.imgbox {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 0.1fr 1fr;
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
-}
 .level {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+.imgbox {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.1fr 1fr;
     grid-column-gap: 0px;
     grid-row-gap: 0px;
 }
