@@ -1,11 +1,5 @@
 <script setup>
 const props = defineProps(['poliForm', 'text'])
-
-function getPos(e){
-    let position = [e.target.getBoundingClientRect().left, e.target.getBoundingClientRect().top];
-    console.log("Posicion del poligono: ", position);
-    return position;
-}
 </script>
 
 <template>

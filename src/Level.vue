@@ -10,16 +10,17 @@ function setPoints(){
 }
 
 function isOnSquare(e){ //Cambiar nombre?
-    let poligonPosition = e.target.getBoundingClientRect();
-    let basuraPosition = document.getElementsByClassName('basura').item(0).getBoundingClientRect();
-
+    const poligonPosition = e.currentTarget.getBoundingClientRect();
+    const basuraPosition = document.getElementsByClassName('basura').item(0).getBoundingClientRect();
+    const text = e.currentTarget.innerText;
+    // console.log(e.path.currentTarget.);
     if (poligonPosition.right >= basuraPosition.left &&
         poligonPosition.left <= basuraPosition.right &&
         poligonPosition.bottom >= basuraPosition.top &&
         poligonPosition.top <= basuraPosition.bottom) {
-        console.log("Los objetos se están tocando.");
+        console.log(text + " esta tocando.");
     } else {
-        console.log("Los objetos no se están tocando.");
+        console.log(text + " no esta tocando.");
     }
 }
 </script>

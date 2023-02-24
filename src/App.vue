@@ -4,8 +4,8 @@ import Constructor from './Constructor.vue'
 import Database from './Database.vue'
 
 let levelNum = ref(1);
-let isLevel = ref(false);
-let isStart = ref(true);
+let isLevel = ref(true);
+let isStart = ref(false);
 const numOfLevels = Object.keys(Database.Levels).length;
 const levels = Database.Levels;
 </script>
