@@ -1,19 +1,21 @@
 <script setup>
-import { ref } from 'vue'
 import poligon from './Poligons.vue'
 import Database from './Database.vue'
-const props = defineProps(['image', 'placeholder', 'poliForm', 'badPoliForm', 'poliNum', 'badPoliNum', 'poliText', 'badPoliText', 'levelNum'])
+const props = defineProps(['image', 'placeholder', 'poliForm', 'badPoliForm', 'poliNum', 'badPoliNum', 'poliText', 'badPoliText', 'levelNum', 'time'])
 
 
 function setPoints(){
-    Database.Levels[props.levelNum]['points'] = 1;
+    let actualPoints = Database.Levels[props.levelNum]['points'];
+    let points = 100 / props.time;  //Cambiar
+    if(actualPoints < points){
+        Database.Levels[props.levelNum]['points'] = points;
+    }
 }
 
 function isOnSquare(e){ //Cambiar nombre?
     const poligonPosition = e.currentTarget.getBoundingClientRect();
     const basuraPosition = document.getElementsByClassName('basura').item(0).getBoundingClientRect();
     const text = e.currentTarget.innerText;
-    // console.log(e.path.currentTarget.);
     if (poligonPosition.right >= basuraPosition.left &&
         poligonPosition.left <= basuraPosition.right &&
         poligonPosition.bottom >= basuraPosition.top &&
@@ -28,6 +30,7 @@ function isOnSquare(e){ //Cambiar nombre?
 <template>
     <div class="level">
         <div class="imgbox">
+            <div id="clock" @onload="showTime()"></div>
             <input type="search" :placeholder="props.placeholder" class="search_input" disabled>
             <img :src="props.image" class="left-fit">
         </div>

@@ -2,7 +2,7 @@
 import Level from './Level.vue'
 import Database from './Database.vue'
 
-const props = defineProps(['levelNum']);
+const props = defineProps(['levelNum', 'time']);
 const levels = Database.Levels;
 // const levelImage = levels[props.levelNum]['image'];
 // const levelPoliForm = levels[props.levelNum]['poliForm'][0];
@@ -18,5 +18,6 @@ const levels = Database.Levels;
         :badPoliNum="levels[props.levelNum]['badPoliNum']"
         :poliText="levels[props.levelNum]['poliText']"
         :badPoliText="levels[props.levelNum]['badPoliText']"
-        :levelNum="props.levelNum"/>
+        :levelNum="props.levelNum"
+        :time="time"/>
 </template>
