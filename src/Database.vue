@@ -10,7 +10,7 @@ const hexagon = 'polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)'
 
 const Levels = {1: 
                     { 
-                        'image': JuguetesParaNiñas,
+                        'image': [JuguetesParaNiñas, mujerExitosa],
                         'poliForm': [octagon, triangle],
                         'placeholder': 'Juguete para niñas',
                         'poliNum': 3,
@@ -21,7 +21,7 @@ const Levels = {1:
                     },
                 2:
                     {
-                        'image': mujerExitosa,
+                        'image': [JuguetesParaNiñas, mujerExitosa],
                         'poliForm': [trapezoid, hexagon],
                         'placeholder': 'Mujer exitosa',
                         'poliNum': 3,
@@ -32,7 +32,7 @@ const Levels = {1:
                     },
                 3:
                     {
-                        'image': mujerExitosa,
+                        'image': [JuguetesParaNiñas, mujerExitosa],
                         'poliForm': [trapezoid, hexagon],
                         'placeholder': 'Mujer exitosa',
                         'poliNum': 3,
@@ -40,7 +40,7 @@ const Levels = {1:
                         'poliText': ['niña', 'juguete', 'pequeño'],
                         'badPoliText': ['color rosa'],
                         'points': 0
-                    }
+                    },
                 }
 
 export default{

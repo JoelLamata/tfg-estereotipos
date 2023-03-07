@@ -1,18 +1,22 @@
 <script setup>
+import { ref } from 'vue'
 import poligon from './Poligons.vue'
 import Database from './Database.vue'
+import Modal from './Modal.vue'
 const props = defineProps(['image', 'placeholder', 'poliForm', 'badPoliForm', 'poliNum', 'badPoliNum', 'poliText', 'badPoliText', 'levelNum', 'time'])
 
+let imageNum = ref(0);
 
-function setPoints(){
+function setPoints() {
     let actualPoints = Database.Levels[props.levelNum]['points'];
-    let points = 100 / props.time;  //Cambiar
-    if(actualPoints < points){
+    let points = Math.floor(100 / props.time);  //Cambiar
+    console.log(points);
+    if (actualPoints < points) {
         Database.Levels[props.levelNum]['points'] = points;
     }
 }
 
-function isOnSquare(e){ //Cambiar nombre?
+function isOnSquare(e) { //Cambiar nombre?
     const poligonPosition = e.currentTarget.getBoundingClientRect();
     const basuraPosition = document.getElementsByClassName('basura').item(0).getBoundingClientRect();
     const text = e.currentTarget.innerText;
@@ -21,10 +25,14 @@ function isOnSquare(e){ //Cambiar nombre?
         poligonPosition.bottom >= basuraPosition.top &&
         poligonPosition.top <= basuraPosition.bottom) {
         console.log(text + " esta tocando.");
+        imageNum = 1;
     } else {
         console.log(text + " no esta tocando.");
+        imageNum = 0;
     }
 }
+
+defineExpose({ setPoints })
 </script>
 
 <template>
@@ -32,21 +40,18 @@ function isOnSquare(e){ //Cambiar nombre?
         <div class="imgbox">
             <div id="clock" @onload="showTime()"></div>
             <input type="search" :placeholder="props.placeholder" class="search_input" disabled>
-            <img :src="props.image" class="left-fit">
+            <img :src="props.image[imageNum]" class="left-fit">
         </div>
         <div class="poligons">
             <div v-for="i in props.poliNum">
-                <poligon :poliForm="props.poliForm" :text="props.poliText[i - 1]" @click="isOnSquare"/>
+                <poligon :poliForm="props.poliForm" :text="props.poliText[i - 1]" @click="isOnSquare" />
             </div>
             <div v-for="i in props.badPoliNum">
-                <poligon :poliForm="props.badPoliForm" :text="props.badPoliText[i - 1]" @click="isOnSquare"/>
+                <poligon :poliForm="props.badPoliForm" :text="props.badPoliText[i - 1]" @click="isOnSquare" />
             </div>
             <div class="basura">
                 <p>Hola</p>
             </div>
-        </div>
-        <div class="submit">
-            <button @click="setPoints()">Submit</button>
         </div>
     </div>
 </template>
@@ -59,6 +64,7 @@ function isOnSquare(e){ //Cambiar nombre?
     grid-column-gap: 0px;
     grid-row-gap: 0px;
 }
+
 .imgbox {
     display: grid;
     grid-template-columns: 1fr;
@@ -66,7 +72,8 @@ function isOnSquare(e){ //Cambiar nombre?
     grid-column-gap: 0px;
     grid-row-gap: 0px;
 }
-.search_input {   
+
+.search_input {
     width: 100%;
     padding: 12px 24px;
 
@@ -74,7 +81,7 @@ function isOnSquare(e){ //Cambiar nombre?
     transition: transform 250ms ease-in-out;
     font-size: 14px;
     line-height: 18px;
-    
+
     color: #575756;
     background-color: transparent;
 
