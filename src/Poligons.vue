@@ -10,9 +10,6 @@ const props = defineProps(['poliForm', 'text'])
 </template>
 
 <style>
-.image {
-    clip-path: polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%);
-}
 .poligon {
     display: inline-block;
     text-align: center;

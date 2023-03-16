@@ -10,7 +10,6 @@ let isStart = ref(true);
 let time = ref(0);
 let showInfo = ref(false);
 let showEndLevel = ref(false);
-// const level = ref(null);
 let timer;
 const numOfLevels = Object.keys(Database.Levels).length;
 const levels = Database.Levels;
@@ -37,14 +36,15 @@ function stopClock(){
   </Teleport>
 
   <div v-show="!isStart" v-for="i in numOfLevels">
-    <button v-show="!isLevel" @click="isLevel = true; levelNum = i; startClock();">Level {{i}} with {{ levels[i]['points'] }} points</button>
+    <button v-show="!isLevel" @click="isLevel = true; levelNum = i; startClock(); $refs.level.resetLevel();">Level {{i}} with {{ levels[i]['points'] }} points</button>
   </div>
 
   <button v-show="!isLevel&&!isStart" @click="isStart = true; isLevel = false;">Back</button>
 
   <div v-show="isLevel">
     {{ time }}
-    <Level :image="levels[levelNum]['image']" 
+    <Level :defaultImages="levels[levelNum]['defaultImages']"
+        :replacementImages="levels[levelNum]['replacementImages']"
         :poliForm="levels[levelNum]['poliForm'][0]"
         :badPoliForm="levels[levelNum]['poliForm'][1]"
         :placeholder="levels[levelNum]['placeholder']"

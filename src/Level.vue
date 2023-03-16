@@ -3,9 +3,11 @@ import { ref } from 'vue'
 import poligon from './Poligons.vue'
 import Database from './Database.vue'
 import Modal from './Modal.vue'
-const props = defineProps(['image', 'placeholder', 'poliForm', 'badPoliForm', 'poliNum', 'badPoliNum', 'poliText', 'badPoliText', 'levelNum', 'time'])
+
+const props = defineProps(['defaultImages', 'replacementImages', 'placeholder', 'poliForm', 'badPoliForm', 'poliNum', 'badPoliNum', 'poliText', 'badPoliText', 'levelNum', 'time'])
 
 let imageNum = ref(0);
+let touchingPoligons = [];
 
 function setPoints() {
     let actualPoints = Database.Levels[props.levelNum]['points'];
@@ -19,30 +21,41 @@ function setPoints() {
 function isOnSquare(e) { //Cambiar nombre?
     const poligonPosition = e.currentTarget.getBoundingClientRect();
     const basuraPosition = document.getElementsByClassName('basura').item(0).getBoundingClientRect();
-    const text = e.currentTarget.innerText;
+    const label = e.currentTarget.innerText;
     if (poligonPosition.right >= basuraPosition.left &&
         poligonPosition.left <= basuraPosition.right &&
         poligonPosition.bottom >= basuraPosition.top &&
         poligonPosition.top <= basuraPosition.bottom) {
-        console.log(text + " esta tocando.");
-        imageNum = 1;
-    } else {
-        console.log(text + " no esta tocando.");
-        imageNum = 0;
+        changeImage(label);
     }
 }
 
-defineExpose({ setPoints })
+function changeImage(label) {
+    console.log(label);
+}
+
+function resetLevel() {
+    // Reset poligons position
+    for (let i = 0; i < props.poliNum + props.badPoliNum; i++) {
+        this.$refs.poligons.children[i].children[0].style["cssText"] = ""
+    }
+    // Reset image
+    imageNum = 0
+}
+
+defineExpose({ setPoints, resetLevel })
 </script>
 
 <template>
     <div class="level">
         <div class="imgbox">
-            <div id="clock" @onload="showTime()"></div>
+            <p id="clock"></p>
             <input type="search" :placeholder="props.placeholder" class="search_input" disabled>
-            <img :src="props.image[imageNum]" class="left-fit">
+            <section class="images">
+                <img v-for="image in props.defaultImages" :src="image">
+            </section>
         </div>
-        <div class="poligons">
+        <div class="poligonsClass" ref="poligons">
             <div v-for="i in props.poliNum">
                 <poligon :poliForm="props.poliForm" :text="props.poliText[i - 1]" @click="isOnSquare" />
             </div>
@@ -50,7 +63,7 @@ defineExpose({ setPoints })
                 <poligon :poliForm="props.badPoliForm" :text="props.badPoliText[i - 1]" @click="isOnSquare" />
             </div>
             <div class="basura">
-                <p>Hola</p>
+                <p></p>
             </div>
         </div>
     </div>
@@ -65,12 +78,19 @@ defineExpose({ setPoints })
     grid-row-gap: 0px;
 }
 
-.imgbox {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 0.1fr 1fr;
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
+/* Hacerlo que con codigo se pueda cambiar el numero de columnas y eso*/
+.images {
+    line-height: 0;
+    column-count: 2;
+    column-gap: 5px;
+    margin: 5px;
+}
+
+.images img {
+    margin-top: 5px;
+    border-radius: 16px;
+    width: 100%;
+    height: auto;
 }
 
 .search_input {
@@ -94,5 +114,12 @@ defineExpose({ setPoints })
     transition: all 250ms ease-in-out;
     backface-visibility: hidden;
     transform-style: preserve-3d;
+}
+
+.basura {
+    border: solid 1px grey;
+    width: 100%;
+    height: 20%;
+    border-radius: 16px;
 }
 </style>
