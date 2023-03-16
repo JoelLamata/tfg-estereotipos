@@ -32,7 +32,6 @@ function isOnSquare(e) { //Cambiar nombre?
         if(index > -1){
             touchingPoligons.splice(index, 1);
         }
-        console.log(touchingPoligons);
     }
 }
 
@@ -41,7 +40,6 @@ function changeImage(label) {
     if(index <= -1){
         touchingPoligons.push(label);
     }
-    console.log(touchingPoligons)
 }
 
 function resetLevel() {
@@ -62,6 +60,15 @@ function getImage(label) {
     }
 }
 
+function showImage(index) {
+    let numDefaultImages = props.defaultImages.length;
+    let numTouchingPoligons = touchingPoligons.length;
+    if(index > numDefaultImages - numTouchingPoligons){
+        return "";
+    }
+    return props.defaultImages[index - 1]
+}
+
 defineExpose({ setPoints, resetLevel })
 </script>
 
@@ -71,17 +78,16 @@ defineExpose({ setPoints, resetLevel })
             <p id="clock"></p>
             <input type="search" :placeholder="props.placeholder" class="search_input" disabled>
             <section class="images">
-                <img v-for="image in props.defaultImages" :src="image">
+                <img v-for="i in props.defaultImages.length" :src="showImage(i)">
                 <img v-for="label in touchingPoligons" :src="getImage(label)">
             </section>
         </div>
         <div class="poligonsClass" ref="poligons">
-            <div v-for="i in props.poliNum">
-                <poligon :poliForm="props.poliForm" :text="props.poliText[i - 1]" @click="isOnSquare" />
-            </div>
-            <div v-for="i in props.badPoliNum">
-                <poligon :poliForm="props.badPoliForm" :text="props.badPoliText[i - 1]" @click="isOnSquare" />
-            </div>
+
+                <poligon v-for="i in props.poliNum" :poliForm="props.poliForm" :text="props.poliText[i - 1]" @click="isOnSquare" />
+
+                <poligon v-for="i in props.badPoliNum" :poliForm="props.badPoliForm" :text="props.badPoliText[i - 1]" @click="isOnSquare" />
+
             <div class="basura">
                 <p></p>
             </div>
@@ -110,7 +116,7 @@ defineExpose({ setPoints, resetLevel })
     margin-top: 5px;
     border-radius: 16px;
     width: 100%;
-    height: auto;
+    /* height: auto; */
 }
 
 .search_input {

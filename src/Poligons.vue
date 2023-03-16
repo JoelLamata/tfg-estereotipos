@@ -3,8 +3,8 @@ const props = defineProps(['poliForm', 'text'])
 </script>
 
 <template>
-     <div class="poligon" v-drag>
-        <img src="./images/green.png" width="100" height="100" :style="{'clip-path': props.poliForm}">
+     <div class="poligon" v-drag :style="{'clip-path': props.poliForm}">
+        <img src="./images/green.png" width="100" height="100" >
         <div class="text">{{props.text}}</div>
     </div>
 </template>
