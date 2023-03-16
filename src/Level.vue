@@ -6,7 +6,6 @@ import Modal from './Modal.vue'
 
 const props = defineProps(['defaultImages', 'replacementImages', 'placeholder', 'poliForm', 'badPoliForm', 'poliNum', 'badPoliNum', 'poliText', 'badPoliText', 'levelNum', 'time'])
 
-let imageNum = ref(0);
 let touchingPoligons = [];
 
 function setPoints() {
@@ -28,10 +27,21 @@ function isOnSquare(e) { //Cambiar nombre?
         poligonPosition.top <= basuraPosition.bottom) {
         changeImage(label);
     }
+    else {
+        const index = touchingPoligons.indexOf(label);
+        if(index > -1){
+            touchingPoligons.splice(index, 1);
+        }
+        console.log(touchingPoligons);
+    }
 }
 
 function changeImage(label) {
-    console.log(label);
+    const index = touchingPoligons.indexOf(label);
+    if(index <= -1){
+        touchingPoligons.push(label);
+    }
+    console.log(touchingPoligons)
 }
 
 function resetLevel() {
@@ -40,7 +50,16 @@ function resetLevel() {
         this.$refs.poligons.children[i].children[0].style["cssText"] = ""
     }
     // Reset image
-    imageNum = 0
+    touchingPoligons = [];
+}
+
+function getImage(label) {
+    for(let i = 0; i < props.replacementImages.length; i++){
+        let dict = props.replacementImages[i];
+        if(dict["label"] == label){
+            return dict["image"];
+        }   
+    }
 }
 
 defineExpose({ setPoints, resetLevel })
@@ -53,6 +72,7 @@ defineExpose({ setPoints, resetLevel })
             <input type="search" :placeholder="props.placeholder" class="search_input" disabled>
             <section class="images">
                 <img v-for="image in props.defaultImages" :src="image">
+                <img v-for="label in touchingPoligons" :src="getImage(label)">
             </section>
         </div>
         <div class="poligonsClass" ref="poligons">
