@@ -14,7 +14,7 @@ const hexagon = 'polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)'
 
 const Levels = {1: 
                     { 
-                        'defaultImages': [marioPaper, sonrisa, marioPaper, sonrisa],
+                        'defaultImages': [marioPaper, sonrisa, marioPaper, sonrisa, marioPaper, sonrisa],
                         'replacementImages': [{"image": juguetesParaNiñas, "label": 'pequeño'}, {"image": mujerExitosa, "label": "niña"}, {"image": fantasy, "label": "color rosa"}, {"image": green, "label": "juguete"}],
                         'poliForm': [octagon, triangle],
                         'placeholder': 'Juguete para niñas',

@@ -77,17 +77,14 @@ defineExpose({ setPoints, resetLevel })
         <div class="imgbox">
             <p id="clock"></p>
             <input type="search" :placeholder="props.placeholder" class="search_input" disabled>
-            <section class="images">
+            <section class="images" :style="{'column-count':2}">
                 <img v-for="i in props.defaultImages.length" :src="showImage(i)">
                 <img v-for="label in touchingPoligons" :src="getImage(label)">
             </section>
         </div>
-        <div class="poligonsClass" ref="poligons">
-
-                <poligon v-for="i in props.poliNum" :poliForm="props.poliForm" :text="props.poliText[i - 1]" @click="isOnSquare" />
-
-                <poligon v-for="i in props.badPoliNum" :poliForm="props.badPoliForm" :text="props.badPoliText[i - 1]" @click="isOnSquare" />
-
+        <div class="poligons">
+            <poligon v-for="i in props.poliNum" :poliForm="props.poliForm" :text="props.poliText[i - 1]" @click="isOnSquare" />
+            <poligon v-for="i in props.badPoliNum" :poliForm="props.badPoliForm" :text="props.badPoliText[i - 1]" @click="isOnSquare" />
             <div class="basura">
                 <p></p>
             </div>
@@ -107,7 +104,7 @@ defineExpose({ setPoints, resetLevel })
 /* Hacerlo que con codigo se pueda cambiar el numero de columnas y eso*/
 .images {
     line-height: 0;
-    column-count: 2;
+    /* column-count: 2; */
     column-gap: 5px;
     margin: 5px;
 }
@@ -143,9 +140,12 @@ defineExpose({ setPoints, resetLevel })
 }
 
 .basura {
+    position: absolute;
+    bottom: 10%;
     border: solid 1px grey;
     width: 100%;
     height: 20%;
     border-radius: 16px;
+    z-index: -1;
 }
 </style>

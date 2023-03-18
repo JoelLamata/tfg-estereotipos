@@ -55,20 +55,25 @@ function stopClock(){
         :levelNum="levelNum"
         :time="time"
         ref="level"/>
-    <button @click="$refs.level.setPoints(); showEndLevel = true; stopClock()">Submit</button>
-    <Teleport to="body">
-        <modal :show="showEndLevel" @close="showEndLevel = false; isLevel = false;">
-            <template #header>
-                <h3>End level</h3>
-            </template>
-        </modal>
-    </Teleport>
-    <button @click="isLevel = false;">Back</button>
+    <div class="levelButtons">
+      <button @click="$refs.level.setPoints(); showEndLevel = true; stopClock()">Submit</button>
+      <Teleport to="body">
+          <modal :show="showEndLevel" @close="showEndLevel = false; isLevel = false;">
+              <template #header>
+                  <h3>End level</h3>
+              </template>
+          </modal>
+      </Teleport>
+      <button @click="isLevel = false;">Back</button>
+    </div>
   </div>
 </template>
 
 <style>
-img {
-  transform: SVGFEFuncAElement(0.5);
+.levelButtons {
+  position: absolute;
+  bottom: 5%;
+  right: 50%;
 }
+
 </style>
