@@ -23,6 +23,42 @@ const Levels = {1:
                         'poliText': ['niña', 'juguete', 'pequeño'],
                         'badPoliText': ['color rosa'],
                         'points': 0
+                    },
+                2: 
+                    { 
+                        'defaultImages': [marioPaper, sonrisa, marioPaper, sonrisa, marioPaper, sonrisa],
+                        'replacementImages': [{"image": juguetesParaNiñas, "label": 'pequeño'}, {"image": mujerExitosa, "label": "niña"}, {"image": fantasy, "label": "color rosa"}, {"image": green, "label": "juguete"}],
+                        'poliForm': [octagon, triangle],
+                        'placeholder': 'Juguete para niñas',
+                        'poliNum': 3,
+                        'badPoliNum': 1,
+                        'poliText': ['niña', 'juguete', 'pequeño'],
+                        'badPoliText': ['color rosa'],
+                        'points': 0
+                    },
+                3: 
+                    { 
+                        'defaultImages': [marioPaper, sonrisa, marioPaper, sonrisa, marioPaper, sonrisa],
+                        'replacementImages': [{"image": juguetesParaNiñas, "label": 'pequeño'}, {"image": mujerExitosa, "label": "niña"}, {"image": fantasy, "label": "color rosa"}, {"image": green, "label": "juguete"}],
+                        'poliForm': [octagon, triangle],
+                        'placeholder': 'Juguete para niñas',
+                        'poliNum': 3,
+                        'badPoliNum': 1,
+                        'poliText': ['niña', 'juguete', 'pequeño'],
+                        'badPoliText': ['color rosa'],
+                        'points': 0
+                    },
+                4: 
+                    { 
+                        'defaultImages': [marioPaper, sonrisa, marioPaper, sonrisa, marioPaper, sonrisa],
+                        'replacementImages': [{"image": juguetesParaNiñas, "label": 'pequeño'}, {"image": mujerExitosa, "label": "niña"}, {"image": fantasy, "label": "color rosa"}, {"image": green, "label": "juguete"}],
+                        'poliForm': [octagon, triangle],
+                        'placeholder': 'Juguete para niñas',
+                        'poliNum': 3,
+                        'badPoliNum': 1,
+                        'poliText': ['niña', 'juguete', 'pequeño'],
+                        'badPoliText': ['color rosa'],
+                        'points': 0
                     }
                 }
 

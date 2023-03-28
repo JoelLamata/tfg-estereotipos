@@ -101,10 +101,8 @@ defineExpose({ setPoints, resetLevel })
     grid-row-gap: 0px;
 }
 
-/* Hacerlo que con codigo se pueda cambiar el numero de columnas y eso*/
 .images {
     line-height: 0;
-    /* column-count: 2; */
     column-gap: 5px;
     margin: 5px;
 }
