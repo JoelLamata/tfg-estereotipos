@@ -27,7 +27,7 @@ function stopClock(){
 <template>
   <div class="startScreen" v-show="!isLevel&&isStart">
     <button class="startButton" @click="isStart = false">Start</button>
-    <button class="infoButton" @click="showInfo = true">Info</button>
+    <!-- <button class="infoButton" @click="showInfo = true">Info</button> -->
     <Teleport to="body">
       <modal :show="showInfo" @close="showInfo = false">
         <template #header>
