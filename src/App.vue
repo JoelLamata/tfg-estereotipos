@@ -105,13 +105,12 @@ body {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 10px;
-  grid-template-rows: repeat(10, 1fr);
-  align-items: center;
-  justify-items: center;
+  grid-template-rows: repeat(6, 1fr);
+  place-items: center;
   height: 97vh;
 }
 
-.backButton { grid-area: 9 / 3 / 10 / 4; }
+.backButton { grid-area: 6 / 3 / 7 / 4; }
 
 /* button */
 button {
