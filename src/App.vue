@@ -14,6 +14,7 @@ let showEndLevel = ref(false);
 let timer;
 const numOfLevels = Object.keys(Database.Levels).length;
 const levels = Database.Levels;
+let totalPoints = ref(0);
 
 function startClock(){
   time.value = 0;
@@ -22,6 +23,14 @@ function startClock(){
 function stopClock(){
   clearInterval(timer);
   timer = null;
+}
+
+function setTotalPoints(){
+  totalPoints = 0;
+  for(let i = 1; i <= numOfLevels; i++){
+    console.log(levels[i]['points']);
+    totalPoints += levels[i]['points'];
+  }
 }
 </script>
 
@@ -50,8 +59,11 @@ Porfavor ayudanos a arreglarlo.</p>
   </div>
 
   <div class="levelsScreen" v-show="!isLevel&&!isStart">
-    <div v-for="i in numOfLevels">
-      <button @click="isLevel = true; levelNum = i; showLevelInfo = true; $refs.level.resetLevel();">Level {{i}} <br /> {{ levels[i]['points'] }} points</button>
+    <p class="totalPoints">Total Points: {{ totalPoints }}</p>
+    <div class="levelsButtons">
+      <div v-for="i in numOfLevels">
+        <button @click="isLevel = true; levelNum = i; showLevelInfo = true; $refs.level.resetLevel();">Level {{i}} <br /> {{ levels[i]['points'] }} points</button>
+      </div>
     </div>
     <button class="backButton"  @click="isStart = true; isLevel = false;">Back</button>
   </div>
@@ -88,7 +100,7 @@ Porfavor ayudanos a arreglarlo.</p>
         :time="time"
         ref="level"/>
     <div class="levelButtons">
-      <button @click="$refs.level.setPoints(); showEndLevel = true; stopClock()">Submit</button>
+      <button @click="$refs.level.setPoints(); setTotalPoints(); showEndLevel = true; stopClock()">Submit</button>
       <Teleport to="body">
           <modal :show="showEndLevel" @close="showEndLevel = false; isLevel = false;">
               <template #header>
@@ -132,14 +144,29 @@ body {
 
 .levelsScreen{
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 10px;
-  grid-template-rows: repeat(6, 1fr);
-  place-items: center;
-  height: 97vh;
+  grid-template-rows: 0.1fr 0.8fr 0.1fr;
+  grid-auto-flow: row dense;
+  justify-items: center;
 }
 
-.backButton { grid-area: 6 / 3 / 7 / 4; }
+.levelsButtons{
+  grid-row: 2;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  grid-template-rows: repeat(5, 1fr);
+  place-items: center;
+  height: 100%;
+  width: 80%;
+}
+
+.totalPoints { 
+  text-align: center;
+}
+.backButton { 
+  align-items: center;
+  width: min-content;
+}
 
 /* button */
 button {
