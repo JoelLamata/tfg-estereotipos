@@ -53,7 +53,7 @@ const props = defineProps({
   transition: all 0.3s ease;
 }
 
-.modal-header h3 {
+.modal-header {
   margin-top: 0;
   color: #42b983;
 }

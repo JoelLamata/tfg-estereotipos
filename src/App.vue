@@ -8,7 +8,8 @@ let levelNum = ref(1);
 let isLevel = ref(false);
 let isStart = ref(true);
 let time = ref(0);
-let showInfo = ref(false);
+let showInfo = ref(true);
+let showLevelInfo = ref(false);
 let showEndLevel = ref(false);
 let timer;
 const numOfLevels = Object.keys(Database.Levels).length;
@@ -27,11 +28,22 @@ function stopClock(){
 <template>
   <div class="startScreen" v-show="!isLevel&&isStart">
     <button class="startButton" @click="isStart = false">Start</button>
-    <!-- <button class="infoButton" @click="showInfo = true">Info</button> -->
+    <button class="infoButton" @click="showInfo = true">Info</button>
     <Teleport to="body">
-      <modal :show="showInfo" @close="showInfo = false">
+      <modal :show="showInfo">
         <template #header>
-          <h3>custom header</h3>
+          <h1>¡Ayuda!</h1>
+        </template>
+        <template #body>
+          <p>El algoritmo de Google imagenes ha empezado a fallar, y esta causando que los resultados esten llenos de estereotipos.
+Porfavor ayudanos a arreglarlo.</p>
+        </template>
+        <template #footer>
+          <p>¡Debemos arreglarlo cuanto antes mejor!</p>
+          <button
+              class="modal-default-button"
+              @click="showInfo = false"
+            >¡Vale!</button>
         </template>
       </modal>
     </Teleport>
@@ -39,12 +51,29 @@ function stopClock(){
 
   <div class="levelsScreen" v-show="!isLevel&&!isStart">
     <div v-for="i in numOfLevels">
-      <button @click="isLevel = true; levelNum = i; startClock(); $refs.level.resetLevel();">Level {{i}} <br /> {{ levels[i]['points'] }} points</button>
+      <button @click="isLevel = true; levelNum = i; showLevelInfo = true; $refs.level.resetLevel();">Level {{i}} <br /> {{ levels[i]['points'] }} points</button>
     </div>
     <button class="backButton"  @click="isStart = true; isLevel = false;">Back</button>
   </div>
 
   <div v-show="isLevel">
+    <Teleport to="body">
+      <modal :show="showLevelInfo">
+        <template #header>
+          <h1>{{ levels[levelNum]['levelDescription']['header'] }}</h1>
+        </template>
+        <template #body>
+          <p>{{ levels[levelNum]['levelDescription']['body'] }}</p>
+        </template>
+        <template #footer>
+          <p>{{ levels[levelNum]['levelDescription']['footer'] }}</p>
+          <button
+              class="modal-default-button"
+              @click="showLevelInfo = false; startClock();"
+            >¡Vale!</button>
+        </template>
+      </modal>
+    </Teleport>
     {{ time }}
     <Level :defaultImages="levels[levelNum]['defaultImages']"
         :replacementImages="levels[levelNum]['replacementImages']"
@@ -67,7 +96,7 @@ function stopClock(){
               </template>
           </modal>
       </Teleport>
-      <button @click="isLevel = false;">Back</button>
+      <button @click="isLevel = false; stopClock()">Back</button>
     </div>
   </div>
 </template>
