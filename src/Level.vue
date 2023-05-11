@@ -142,7 +142,7 @@ defineExpose({ setPoints, resetLevel })
     position: absolute;
     bottom: 10%;
     border: solid 1px grey;
-    width: 100%;
+    width: 48%;
     height: 20%;
     border-radius: 16px;
     z-index: -1;

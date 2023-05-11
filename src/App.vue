@@ -123,12 +123,6 @@ body {
   height: 100%;
 }
 
-.levelButtons {
-  position: absolute;
-  bottom: 5%;
-  right: 50%;
-}
-
 /* Grid */
 .startScreen {
   display: grid;
@@ -214,5 +208,33 @@ button:active {
   box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
   color: rgba(0, 0, 0, 0.65);
   transform: translateY(0);
+}
+
+/* Level */
+.time {
+  align-self: center;
+  font-family:'digital-clock-font';
+  font-size:xx-large;
+  margin: 1%;
+  text-align: center;
+  text-decoration-color: #F0F0F1;
+  background-color: whitesmoke;
+  border: solid 1px grey;
+  border-radius: 16px;
+  width: 10%;
+}
+
+.levelButtons {
+  display: grid;
+  position: absolute;
+  grid-template-columns: repeat(2, 1fr);
+  bottom: 5%;
+  right: 50%;
+  column-gap: 100px;
+}
+
+@font-face{
+ font-family:'digital-clock-font';
+ src: url('./fonts/digital-7.ttf');
 }
 </style>
