@@ -86,7 +86,7 @@ Porfavor ayudanos a arreglarlo.</p>
         </template>
       </modal>
     </Teleport>
-    {{ time }}
+    <p class="time">{{ time }}</p>
     <Level :defaultImages="levels[levelNum]['defaultImages']"
         :replacementImages="levels[levelNum]['replacementImages']"
         :poliForm="levels[levelNum]['poliForm'][0]"
@@ -100,6 +100,7 @@ Porfavor ayudanos a arreglarlo.</p>
         :time="time"
         ref="level"/>
     <div class="levelButtons">
+      <button @click="isLevel = false; stopClock()">Back</button>
       <button @click="$refs.level.setPoints(); setTotalPoints(); showEndLevel = true; stopClock()">Submit</button>
       <Teleport to="body">
           <modal :show="showEndLevel" @close="showEndLevel = false; isLevel = false;">
@@ -108,7 +109,6 @@ Porfavor ayudanos a arreglarlo.</p>
               </template>
           </modal>
       </Teleport>
-      <button @click="isLevel = false; stopClock()">Back</button>
     </div>
   </div>
 </template>
