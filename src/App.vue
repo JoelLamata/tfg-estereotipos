@@ -26,10 +26,9 @@ function stopClock(){
 }
 
 function setTotalPoints(){
-  totalPoints = 0;
+  totalPoints.value = 0;
   for(let i = 1; i <= numOfLevels; i++){
-    console.log(levels[i]['points']);
-    totalPoints += levels[i]['points'];
+    totalPoints.value += levels[i]['points'];
   }
 }
 </script>
@@ -62,7 +61,7 @@ Porfavor ayudanos a arreglarlo.</p>
     <p class="totalPoints">Total Points: {{ totalPoints }}</p>
     <div class="levelsButtons">
       <div v-for="i in numOfLevels">
-        <button @click="isLevel = true; levelNum = i; showLevelInfo = true; $refs.level.resetLevel();">Level {{i}} <br /> {{ levels[i]['points'] }} points</button>
+        <button @click="$refs.level.resetLevel(); isLevel = true; levelNum = i; showLevelInfo = true; time = 0;">Level {{i}} <br /> {{ levels[i]['points'] }} points</button>
       </div>
     </div>
     <button class="backButton"  @click="isStart = true; isLevel = false;">Back</button>
@@ -100,8 +99,8 @@ Porfavor ayudanos a arreglarlo.</p>
         :time="time"
         ref="level"/>
     <div class="levelButtons">
-      <button @click="isLevel = false; stopClock()">Back</button>
-      <button @click="$refs.level.setPoints(); setTotalPoints(); showEndLevel = true; stopClock()">Submit</button>
+      <button @click="isLevel = false; stopClock();">Back</button>
+      <button @click="$refs.level.setPoints(); setTotalPoints(); showEndLevel = true; stopClock();">Submit</button>
       <Teleport to="body">
           <modal :show="showEndLevel" @close="showEndLevel = false; isLevel = false;">
               <template #header>

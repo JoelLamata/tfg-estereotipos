@@ -11,7 +11,7 @@ let touchingPoligons = [];
 function setPoints() {
     let actualPoints = Database.Levels[props.levelNum]['points'];
     let points = Math.floor(100 / props.time);  //Cambiar
-    console.log(points);
+    // console.log(points);
     if (actualPoints < points) {
         Database.Levels[props.levelNum]['points'] = points;
     }
@@ -29,7 +29,7 @@ function isOnSquare(e) { //Cambiar nombre?
     }
     else {
         const index = touchingPoligons.indexOf(label);
-        if(index > -1){
+        if (index > -1) {
             touchingPoligons.splice(index, 1);
         }
     }
@@ -37,34 +37,45 @@ function isOnSquare(e) { //Cambiar nombre?
 
 function changeImage(label) {
     const index = touchingPoligons.indexOf(label);
-    if(index <= -1){
+    if (index <= -1) {
         touchingPoligons.push(label);
     }
 }
 
 function resetLevel() {
     // Reset poligons position
-    for (let i = 0; i < props.poliNum + props.badPoliNum; i++) {
-        this.$refs.poligons.children[i].style["top"] = ""
-        this.$refs.poligons.children[i].style["left"] = ""
+    for (let i = 0; i < props.poliNum; i++) {
+        const id = 'poli-' + (i + 1)
+        console.log(ref)
+        const poligon = ref.poligons.querySelector(`#${id}`)
+        console.log(poligon)
+        // this.$refs.poligons.children[i].style["top"] = "0"
+        // this.$refs.poligons.children[i].style["left"] = "0"
+        poligon.style.top = ""
+        poligon.style.left = ""
     }
     // Reset image
     touchingPoligons = [];
+
+    this.$nextTick(() => {
+        // Any code that relies on the updated DOM
+        // can be placed here
+    });
 }
 
 function getImage(label) {
-    for(let i = 0; i < props.replacementImages.length; i++){
+    for (let i = 0; i < props.replacementImages.length; i++) {
         let dict = props.replacementImages[i];
-        if(dict["label"] == label){
+        if (dict["label"] == label) {
             return dict["image"];
-        }   
+        }
     }
 }
 
 function showImage(index) {
     let numDefaultImages = props.defaultImages.length;
     let numTouchingPoligons = touchingPoligons.length;
-    if(index > numDefaultImages - numTouchingPoligons){
+    if (index > numDefaultImages - numTouchingPoligons) {
         return "";
     }
     return props.defaultImages[index - 1]
@@ -78,14 +89,14 @@ defineExpose({ setPoints, resetLevel })
         <div class="imgbox">
             <p id="clock"></p>
             <input type="search" :placeholder="props.placeholder" class="search_input" disabled>
-            <section class="images" :style="{'column-count':2}">
+            <section class="images" :style="{ 'column-count': 2 }">
                 <img v-for="i in props.defaultImages.length" :src="showImage(i)">
                 <img v-for="label in touchingPoligons" :src="getImage(label)">
             </section>
         </div>
         <div class="poligons" ref="poligons">
-            <poligon v-for="i in props.poliNum" :poliForm="props.poliForm" :text="props.poliText[i - 1]" @click="isOnSquare" />
-            <poligon v-for="i in props.badPoliNum" :poliForm="props.badPoliForm" :text="props.badPoliText[i - 1]" @click="isOnSquare" />
+            <poligon v-for="i in props.poliNum" :poliForm="props.poliForm" :text="props.poliText[i - 1]" @click="isOnSquare" :id="'poli-' + i"/>
+            <poligon v-for="i in props.badPoliNum" :poliForm="props.badPoliForm" :text="props.badPoliText[i - 1]" @click="isOnSquare" :id="'badpoli-' + i"/>
             <div class="basura">
                 <p></p>
             </div>
