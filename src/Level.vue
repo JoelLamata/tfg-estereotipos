@@ -23,8 +23,8 @@ function isOnSquare(e) { //Cambiar nombre?
     const label = e.currentTarget.innerText;
     if (poligonPosition.right >= basuraPosition.left &&
         poligonPosition.left <= basuraPosition.right &&
-        poligonPosition.bottom >= basuraPosition.top &&
-        poligonPosition.top <= basuraPosition.bottom) {
+        poligonPosition.bottom <= basuraPosition.bottom &&
+        poligonPosition.top >= basuraPosition.top) {
         changeImage(label);
     }
     else {
@@ -45,14 +45,14 @@ function changeImage(label) {
 function resetLevel() {
     // Reset poligons position
     for (let i = 0; i < props.poliNum; i++) {
-        const id = 'poli-' + (i + 1)
-        console.log(ref)
-        const poligon = ref.poligons.querySelector(`#${id}`)
-        console.log(poligon)
-        // this.$refs.poligons.children[i].style["top"] = "0"
-        // this.$refs.poligons.children[i].style["left"] = "0"
-        poligon.style.top = ""
-        poligon.style.left = ""
+        // const id = 'poli-' + (i + 1)
+        // console.log(ref)
+        // const poligon = ref.poligons.querySelector(`#${id}`)
+        // console.log(poligon)
+        // poligon.style.top = ""
+        // poligon.style.left = ""
+        this.$refs.poligons.children[i].style["top"] = "0"
+        this.$refs.poligons.children[i].style["left"] = "0"
     }
     // Reset image
     touchingPoligons = [];
@@ -87,9 +87,8 @@ defineExpose({ setPoints, resetLevel })
 <template>
     <div class="level">
         <div class="imgbox">
-            <p id="clock"></p>
             <input type="search" :placeholder="props.placeholder" class="search_input" disabled>
-            <section class="images" :style="{ 'column-count': 2 }">
+            <section class="images" :style="{ 'column-count': 2}">
                 <img v-for="i in props.defaultImages.length" :src="showImage(i)">
                 <img v-for="label in touchingPoligons" :src="getImage(label)">
             </section>
@@ -113,17 +112,24 @@ defineExpose({ setPoints, resetLevel })
     grid-row-gap: 0px;
 }
 
+
 .images {
     line-height: 0;
     column-gap: 5px;
     margin: 5px;
+    max-height: auto;
+    /* max-width: 80vh; */
+    /* overflow-y: auto;
+    overflow-x: hidden; */
+    /* overflow-y: scroll; */
 }
 
 .images img {
     margin-top: 5px;
     border-radius: 16px;
-    width: 100%;
-    /* height: auto; */
+    width: 50vh;
+    height: 35vh;
+    object-fit: cover;
 }
 
 .search_input {
