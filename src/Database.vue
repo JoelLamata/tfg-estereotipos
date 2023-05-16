@@ -1,17 +1,17 @@
 <script>
-import green from './images/green.png'
+import green from "./images/green.png"
 
-import juguetesParaNiñas from './images/JuguetesParaNiñas.png'
-import mujerExitosa from './images/mujer-exitosa.png'
-import fantasy from './images/fantasy.jpg'
-import marioPaper from './images/mario-paper.jpg'
-import sonrisa from './images/sonrisa.jpg'
+import juguetesParaNiñas from "./images/JuguetesParaNiñas.png"
+import mujerExitosa from "./images/mujer-exitosa.png"
+import fantasy from "./images/fantasy.jpg"
+import marioPaper from "./images/mario-paper.jpg"
+import sonrisa from "./images/sonrisa.jpg"
 
 // Poligonos
-const triangle = 'polygon(50% 0%, 0% 100%, 100% 100%)'
-const octagon = 'polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%)'
-const trapezoid = 'polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%)'
-const hexagon = 'polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)'
+const triangle = "polygon(50% 0%, 0% 100%, 100% 100%)"
+const octagon = "polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%)"
+const trapezoid = "polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%)"
+const hexagon = "polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)"
 
 // Persona Poderosa
 const defaultImagesPersonaPoderosa = [
@@ -41,21 +41,21 @@ const maquillajeBelleza = "https://proyectoscio.ucv.es/wp-content/uploads/2022/0
 
 const Levels = {1: 
                     { 
-                        'defaultImages': defaultImagesBelleza,
-                        'replacementImages': [
-                            {"image": coloresBelleza, "label": 'Colores', "replacementIndex": 0}, 
+                        "defaultImages": defaultImagesBelleza,
+                        "replacementImages": [
+                            {"image": coloresBelleza, "label": "Colores", "replacementIndex": 0}, 
                             {"image": floresBelleza, "label": "Flores", "replacementIndex": 3}, 
                             {"image": cuidadosBelleza, "label": "Cuidados", "replacementIndex": 1}, 
                             {"image": maquillajeBelleza, "label": "Maquillaje", "replacementIndex": 2}
                         ],
-                        'poliForm': [octagon, hexagon],
-                        'placeholder': 'Belleza',
-                        'poliNum': 3,
-                        'badPoliNum': 1,
-                        'poliText': ['Colores', 'Flores', 'Cuidados'],
-                        'badPoliText': ['Maquillaje'],
-                        'points': 0,
-                        'levelDescription': {'header': 'hola header', 'body': 'hola body', 'footer': 'hola footer'}
+                        "poliForm": [octagon, hexagon],
+                        "placeholder": "Belleza",
+                        "poliNum": 3,
+                        "badPoliNum": 1,
+                        "poliText": ["Colores", "Flores", "Cuidados"],
+                        "badPoliText": ["Maquillaje"],
+                        "points": 0,
+                        "levelDescription": {"header": "hola header", "body": "hola body", "footer": "hola footer"}
                     },
                 }
 

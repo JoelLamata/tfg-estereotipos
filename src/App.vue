@@ -14,7 +14,7 @@ let showLevelInfo = ref(false);
 let showEndLevel = ref(false);
 let timer;
 const numOfLevels = Object.keys(Database.Levels).length;
-const levels = _.cloneDeep(Database.Levels);
+const levels = Database.Levels;
 let totalPoints = ref(0);
 
 function startClock(){
@@ -156,7 +156,16 @@ body {
 
 .totalPoints { 
   text-align: center;
+  background-color: whitesmoke;
+  border: solid 1px grey;
+  border-radius: 16px;
+  width: 15%;
+  height: 40%;
+  font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 16px;
+  font-weight: 600;
 }
+
 .backButton { 
   align-items: center;
   width: min-content;

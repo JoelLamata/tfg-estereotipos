@@ -9,13 +9,15 @@ const props = defineProps(['defaultImages', 'replacementImages', 'placeholder', 
 
 const defImgs = _.cloneDeep(props.defaultImages)
 var imagesToShow = _.cloneDeep(props.defaultImages);
+let correctPoligons = [];
 
 function setPoints() {
     let actualPoints = Database.Levels[props.levelNum]['points'];
-    let points = Math.floor(100 / props.time);  //Cambiar
-    // console.log(points);
+    let points = correctPoligons.length * Math.floor(100 / props.time);  //Cambiar
+    console.log(points);
     if (actualPoints < points) {
         Database.Levels[props.levelNum]['points'] = points;
+        console.log(Database.Levels[props.levelNum]['points'])
     }
 }
 
@@ -28,9 +30,18 @@ function isOnSquare(e) { //Cambiar nombre?
         poligonPosition.bottom <= basuraPosition.bottom &&
         poligonPosition.top >= basuraPosition.top) {
         changeImage(label, false);
+        if(props.badPoliText.includes(label)){
+            correctPoligons.push(label);
+        }
+        console.log(correctPoligons)
     }
     else {
-        changeImage(label, true)
+        changeImage(label, true);
+        const idx = correctPoligons.indexOf(label);
+        if(idx != -1){
+            correctPoligons.splice(idx, 1);
+        }
+        console.log(correctPoligons)
     }
 }
 
@@ -44,7 +55,6 @@ function changeImage(label, toDefault) {
             imagesToShow[imageIndex] = _.cloneDeep(imageObject.image);   // Change to replacement
         }
     }
-    console.log(defImgs)
 }
 
 function resetLevel() {
@@ -55,8 +65,7 @@ function resetLevel() {
     }
     // Reset image
     imagesToShow = props.defaultImages;
-
-    this.$nextTick(() => {});   // No hace nada
+    correctPoligons = [];
 }
 
 defineExpose({ setPoints, resetLevel })
