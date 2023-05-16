@@ -3,10 +3,12 @@ import { ref } from 'vue'
 import poligon from './Poligons.vue'
 import Database from './Database.vue'
 import Modal from './Modal.vue'
+import _ from 'lodash'
 
 const props = defineProps(['defaultImages', 'replacementImages', 'placeholder', 'poliForm', 'badPoliForm', 'poliNum', 'badPoliNum', 'poliText', 'badPoliText', 'levelNum', 'time'])
 
-let touchingPoligons = [];
+const defImgs = _.cloneDeep(props.defaultImages)
+var imagesToShow = _.cloneDeep(props.defaultImages);
 
 function setPoints() {
     let actualPoints = Database.Levels[props.levelNum]['points'];
@@ -25,60 +27,36 @@ function isOnSquare(e) { //Cambiar nombre?
         poligonPosition.left <= basuraPosition.right &&
         poligonPosition.bottom <= basuraPosition.bottom &&
         poligonPosition.top >= basuraPosition.top) {
-        changeImage(label);
+        changeImage(label, false);
     }
     else {
-        const index = touchingPoligons.indexOf(label);
-        if (index > -1) {
-            touchingPoligons.splice(index, 1);
-        }
+        changeImage(label, true)
     }
 }
 
-function changeImage(label) {
-    const index = touchingPoligons.indexOf(label);
-    if (index <= -1) {
-        touchingPoligons.push(label);
+function changeImage(label, toDefault) {
+    const imageObject = props.replacementImages.find(item => item.label === label);
+    if(imageObject){
+        const imageIndex = imageObject.replacementIndex;
+        if(toDefault) {
+            imagesToShow[imageIndex] = _.cloneDeep(defImgs[imageIndex]); // Change to default
+        } else {
+            imagesToShow[imageIndex] = _.cloneDeep(imageObject.image);   // Change to replacement
+        }
     }
+    console.log(defImgs)
 }
 
 function resetLevel() {
     // Reset poligons position
-    for (let i = 0; i < props.poliNum; i++) {
-        // const id = 'poli-' + (i + 1)
-        // console.log(ref)
-        // const poligon = ref.poligons.querySelector(`#${id}`)
-        // console.log(poligon)
-        // poligon.style.top = ""
-        // poligon.style.left = ""
+    for (let i = 0; i < props.poliNum + props.badPoliNum; i++) {
         this.$refs.poligons.children[i].style["top"] = "0"
         this.$refs.poligons.children[i].style["left"] = "0"
     }
     // Reset image
-    touchingPoligons = [];
+    imagesToShow = props.defaultImages;
 
-    this.$nextTick(() => {
-        // Any code that relies on the updated DOM
-        // can be placed here
-    });
-}
-
-function getImage(label) {
-    for (let i = 0; i < props.replacementImages.length; i++) {
-        let dict = props.replacementImages[i];
-        if (dict["label"] == label) {
-            return dict["image"];
-        }
-    }
-}
-
-function showImage(index) {
-    let numDefaultImages = props.defaultImages.length;
-    let numTouchingPoligons = touchingPoligons.length;
-    if (index > numDefaultImages - numTouchingPoligons) {
-        return "";
-    }
-    return props.defaultImages[index - 1]
+    this.$nextTick(() => {});   // No hace nada
 }
 
 defineExpose({ setPoints, resetLevel })
@@ -89,8 +67,8 @@ defineExpose({ setPoints, resetLevel })
         <div class="imgbox">
             <input type="search" :placeholder="props.placeholder" class="search_input" disabled>
             <section class="images" :style="{ 'column-count': 2}">
-                <img v-for="i in props.defaultImages.length" :src="showImage(i)">
-                <img v-for="label in touchingPoligons" :src="getImage(label)">
+                <img v-for="i in props.defaultImages.length" :src="imagesToShow[i - 1]">
+                <!-- <img v-for="label in touchingPoligons" :src="getImage(label)"> -->
             </section>
         </div>
         <div class="poligons" ref="poligons">

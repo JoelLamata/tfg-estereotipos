@@ -3,6 +3,7 @@ import Modal from './Modal.vue'
 import { ref } from 'vue'
 import Database from './Database.vue'
 import Level from './Level.vue'
+import _ from 'lodash'
 
 let levelNum = ref(1);
 let isLevel = ref(false);
@@ -13,7 +14,7 @@ let showLevelInfo = ref(false);
 let showEndLevel = ref(false);
 let timer;
 const numOfLevels = Object.keys(Database.Levels).length;
-const levels = Database.Levels;
+const levels = _.cloneDeep(Database.Levels);
 let totalPoints = ref(0);
 
 function startClock(){

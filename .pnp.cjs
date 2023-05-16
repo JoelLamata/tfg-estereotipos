@@ -29,6 +29,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./",\
           "packageDependencies": [\
             ["@vitejs/plugin-vue", "virtual:473f0a51180a8d4ee1c436e6d62f8d7a8fde71c5b1c6437135c5f1f7d70781730dee3672e9752f8d58da3bd5b9e2c9097566589d670ac4e1db24c7cfbd641e07#npm:4.2.3"],\
+            ["lodash", "npm:4.17.21"],\
             ["v-drag", "npm:3.0.9"],\
             ["vite", "virtual:473f0a51180a8d4ee1c436e6d62f8d7a8fde71c5b1c6437135c5f1f7d70781730dee3672e9752f8d58da3bd5b9e2c9097566589d670ac4e1db24c7cfbd641e07#npm:4.3.5"],\
             ["vue", "npm:3.3.2"]\
@@ -1007,6 +1008,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["lodash", [\
+        ["npm:4.17.21", {\
+          "packageLocation": "./.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/",\
+          "packageDependencies": [\
+            ["lodash", "npm:4.17.21"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["lru-cache", [\
         ["npm:6.0.0", {\
           "packageLocation": "./.yarn/cache/lru-cache-npm-6.0.0-b4c8668fe1-f97f499f89.zip/node_modules/lru-cache/",\
@@ -1517,6 +1527,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["tfg-estereotipos", "workspace:."],\
             ["@vitejs/plugin-vue", "virtual:473f0a51180a8d4ee1c436e6d62f8d7a8fde71c5b1c6437135c5f1f7d70781730dee3672e9752f8d58da3bd5b9e2c9097566589d670ac4e1db24c7cfbd641e07#npm:4.2.3"],\
+            ["lodash", "npm:4.17.21"],\
             ["v-drag", "npm:3.0.9"],\
             ["vite", "virtual:473f0a51180a8d4ee1c436e6d62f8d7a8fde71c5b1c6437135c5f1f7d70781730dee3672e9752f8d58da3bd5b9e2c9097566589d670ac4e1db24c7cfbd641e07#npm:4.3.5"],\
             ["vue", "npm:3.3.2"]\

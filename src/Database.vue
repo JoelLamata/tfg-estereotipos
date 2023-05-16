@@ -44,9 +44,9 @@ const Levels = {1:
                         'defaultImages': defaultImagesBelleza,
                         'replacementImages': [
                             {"image": coloresBelleza, "label": 'Colores', "replacementIndex": 0}, 
-                            {"image": floresBelleza, "label": "Flores"}, 
-                            {"image": cuidadosBelleza, "label": "Cuidados"}, 
-                            {"image": maquillajeBelleza, "label": "Maquillaje"}
+                            {"image": floresBelleza, "label": "Flores", "replacementIndex": 3}, 
+                            {"image": cuidadosBelleza, "label": "Cuidados", "replacementIndex": 1}, 
+                            {"image": maquillajeBelleza, "label": "Maquillaje", "replacementIndex": 2}
                         ],
                         'poliForm': [octagon, hexagon],
                         'placeholder': 'Belleza',
