@@ -97,7 +97,7 @@ defineExpose({ setPoints, resetLevel })
             <poligon v-for="i in props.poliNum" :poliForm="props.poliForm" :text="props.poliText[i - 1]" @click="isOnSquare" :id="'poli-' + i"/>
             <poligon v-for="i in props.badPoliNum" :poliForm="props.badPoliForm" :text="props.badPoliText[i - 1]" @click="isOnSquare" :id="'badpoli-' + i"/>
             <div class="basura">
-                <p></p>
+                <img src="https://cdn.icon-icons.com/icons2/1791/PNG/512/trashcan1_114647.png">
             </div>
         </div>
     </div>
@@ -112,16 +112,11 @@ defineExpose({ setPoints, resetLevel })
     grid-row-gap: 0px;
 }
 
-
 .images {
     line-height: 0;
     column-gap: 5px;
     margin: 5px;
     max-height: auto;
-    /* max-width: 80vh; */
-    /* overflow-y: auto;
-    overflow-x: hidden; */
-    /* overflow-y: scroll; */
 }
 
 .images img {
@@ -154,14 +149,28 @@ defineExpose({ setPoints, resetLevel })
     transform-style: preserve-3d;
 }
 
+.poligons {
+    position: relative;
+}
+
 .basura {
     background-color: whitesmoke;
     position: absolute;
-    bottom: 10%;
+    bottom: 0%;
     border: solid 1px grey;
-    width: 48%;
+    width: 100%;
     height: 20%;
     border-radius: 16px;
     z-index: -1;
+}
+
+.basura img {
+    height: 10vh;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
 }
 </style>
