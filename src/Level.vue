@@ -7,8 +7,8 @@ import _ from 'lodash'
 
 const props = defineProps(['defaultImages', 'replacementImages', 'placeholder', 'poliForm', 'badPoliForm', 'poliNum', 'badPoliNum', 'poliText', 'badPoliText', 'levelNum', 'time'])
 
-const defImgs = _.cloneDeep(props.defaultImages)
-var imagesToShow = ref(props.defaultImages);
+let defImgs = _.cloneDeep(props.defaultImages)
+let imagesToShow = _.cloneDeep(props.defaultImages);
 let correctPoligons = [];
 
 function setPoints() {
@@ -27,8 +27,8 @@ function isOnSquare(e) { //Cambiar nombre?
     const label = e.currentTarget.innerText;
     if (poligonPosition.right >= basuraPosition.left &&
         poligonPosition.left <= basuraPosition.right &&
-        poligonPosition.bottom <= basuraPosition.bottom &&
-        poligonPosition.top >= basuraPosition.top) {
+        poligonPosition.bottom >= basuraPosition.top &&
+        poligonPosition.top <= basuraPosition.bottom) {
         changeImage(label, false);
         if (props.badPoliText.includes(label)) {
             correctPoligons.push(label);
@@ -69,16 +69,17 @@ async function resetLevel() {
 }
 
 watch(() => props.defaultImages, (newVal) => {
-    imagesToShow = newVal;
+    defImgs = _.cloneDeep(props.defaultImages)
+    imagesToShow = _.cloneDeep(newVal);
 })
 
 defineExpose({ setPoints, resetLevel })
 </script>
 
 <template>
+    <input type="search" :placeholder="props.placeholder" class="search_input" disabled>
     <div class="level">
         <div class="imgbox">
-            <input type="search" :placeholder="props.placeholder" class="search_input" disabled>
             <div class="images-container" :class="{ 'two-columns': imagesToShow.length === 4 }">
                 <img v-for="i in imagesToShow.length" :src="imagesToShow[i - 1]">
             </div>
@@ -100,9 +101,11 @@ defineExpose({ setPoints, resetLevel })
     display: grid;
     grid-auto-columns: minmax(0, 1fr);
     grid-auto-flow: column;
-    grid-template-rows: 1fr;
+    grid-template-rows: minmax(0, 1fr);
     grid-column-gap: 2px;
     grid-row-gap: 0px;
+    margin-top: 5px;
+    height: 70vh;
 }
 
 .imbox {
@@ -111,10 +114,13 @@ defineExpose({ setPoints, resetLevel })
 
 .images-container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    max-width: 100%;
-    max-height: 70vh;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+    /* max-width: 100%;
+    max-height: 70%; */
+    height: 100%;
+    grid-column-gap: 2px;
+    grid-row-gap: 2px;
 }
 
 .images-container.two-columns {
@@ -126,11 +132,10 @@ defineExpose({ setPoints, resetLevel })
     height: 100%;
     object-fit: cover;
     border-radius: 16px;
-    margin-top: 5px;
 }
 
 .search_input {
-    width: 100%;
+    width: 50%;
     padding: 12px 24px;
     background-color: whitesmoke;
     font-size: 14px;
