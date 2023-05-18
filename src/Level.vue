@@ -80,7 +80,7 @@ defineExpose({ setPoints, resetLevel })
     <input type="search" :placeholder="props.placeholder" class="search_input" disabled>
     <div class="level">
         <div class="imgbox">
-            <div class="images-container" :class="{ 'two-columns': imagesToShow.length === 4 }">
+            <div class="images-container" :class="{ 'two-columns': imagesToShow.length === 4, 'three-columns': imagesToShow.length >= 6, 'three-rows': imagesToShow.length > 6 }">
                 <img v-for="i in imagesToShow.length" :src="imagesToShow[i - 1]">
             </div>
         </div>
@@ -115,7 +115,7 @@ defineExpose({ setPoints, resetLevel })
 .images-container {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    grid-template-rows: repeat(2, minmax(0, 1fr)); /*Cambiar cuando sean mas de 6 */
+    grid-template-rows: repeat(2, minmax(0, 1fr));
     height: 100%;
     grid-column-gap: 2px;
     grid-row-gap: 2px;
@@ -123,6 +123,14 @@ defineExpose({ setPoints, resetLevel })
 
 .images-container.two-columns {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.images-container.three-columns {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.images-container.three-rows {
+    grid-template-rows: repeat(3, minmax(0, 1fr));
 }
 
 .images-container img {
