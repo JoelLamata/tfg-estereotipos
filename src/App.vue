@@ -107,19 +107,35 @@ function setTotalPoints() {
       </modal>
     </Teleport>
     <p class="time">{{ time }}</p>
-    <Level :defaultImages="levels[levelNum]['defaultImages']" :replacementImages="levels[levelNum]['replacementImages']"
-      :poliForm="levels[levelNum]['poliForm'][0]" :badPoliForm="levels[levelNum]['poliForm'][1]"
-      :placeholder="levels[levelNum]['placeholder']" :poliNum="levels[levelNum]['poliNum']"
-      :badPoliNum="levels[levelNum]['badPoliNum']" :poliText="levels[levelNum]['poliText']"
-      :badPoliText="levels[levelNum]['badPoliText']" :levelNum="levelNum" :time="time" ref="level" />
+    <Level :defaultImages="levels[levelNum]['defaultImages']"
+      :replacementImages="levels[levelNum]['replacementImages']"
+      :poliForm="levels[levelNum]['poliForm'][0]" 
+      :badPoliForm="levels[levelNum]['poliForm'][1]"
+      :placeholder="levels[levelNum]['placeholder']" 
+      :poliNum="levels[levelNum]['poliNum']"
+      :badPoliNum="levels[levelNum]['badPoliNum']" 
+      :poliText="levels[levelNum]['poliText']"
+      :badPoliText="levels[levelNum]['badPoliText']" 
+      :levelNum="levelNum" 
+      :time="time" ref="level" />
     <div class="levelButtons">
       <button @click="isLevel = false; stopClock();">Atrás</button>
       <button @click="$refs.level.setPoints(); setTotalPoints(); showEndLevel = true; stopClock();">Finalizar</button>
       <Teleport to="body">
-        <modal :show="showEndLevel" @close="showEndLevel = false; isLevel = false;">
+        <modal :show="showEndLevel">
           <template #header>
-            <h3>Acabar</h3>
-          </template>
+          <h1 v-if="levels[levelNum]['points'] != 0">{{ levels[levelNum]['endLevelDescription']['header'] }}</h1>
+          <h1 v-else>¡Cuidado!</h1>
+        </template>
+        <template #body>
+          <p v-if="levels[levelNum]['points'] != 0">{{ levels[levelNum]['endLevelDescription']['body'] }}</p>
+          <p v-else>Sigue habiendo algún problema con el algoritmo.</p>
+        </template>
+        <template #footer>
+          <p v-if="levels[levelNum]['points'] != 0">{{ levels[levelNum]['endLevelDescription']['footer'] }}</p>
+          <p v-else>¡Sigue intentándolo!</p>
+          <button class="modal-default-button" @click="showEndLevel = false; isLevel = false;">Acabar</button>
+        </template>
         </modal>
       </Teleport>
     </div>

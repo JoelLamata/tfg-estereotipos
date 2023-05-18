@@ -60,8 +60,8 @@ function changeImage(label, toDefault) {
 async function resetLevel() {
     // Reset poligons position
     for (let i = 0; i < props.poliNum + props.badPoliNum; i++) {
-        this.$refs.poligons.children[i].style["top"] = "0"
-        this.$refs.poligons.children[i].style["left"] = "0"
+        this.$refs.poligons.children[i].style["top"] = ""
+        this.$refs.poligons.children[i].style["left"] = ""
     }
     // Reset image
     // imagesToShow = props.defaultImages;

@@ -1,14 +1,14 @@
 <script>
 // Poligonos
 const trapezoid = "polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%)"
-const parallelogram = "clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);"
-const rhombus = "clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);"
-const pentagon = "clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);"
+const parallelogram = "polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%)"
+const rhombus = "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)"
+const pentagon = "polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%)"
 const hexagon = "polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)"
-const heptagon = "clip-path: polygon(50% 0%, 90% 20%, 100% 60%, 75% 100%, 25% 100%, 0% 60%, 10% 20%);"
+const heptagon = "polygon(50% 0%, 90% 20%, 100% 60%, 75% 100%, 25% 100%, 0% 60%, 10% 20%)"
 const octagon = "polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%)"
-const nonagon = "clip-path: polygon(50% 0%, 83% 12%, 100% 43%, 94% 78%, 68% 100%, 32% 100%, 6% 78%, 0% 43%, 17% 12%);"
-const decagon = "clip-path: polygon(50% 0%, 80% 10%, 100% 35%, 100% 70%, 80% 90%, 50% 100%, 20% 90%, 0% 70%, 0% 35%, 20% 10%);"
+const nonagon = "polygon(50% 0%, 83% 12%, 100% 43%, 94% 78%, 68% 100%, 32% 100%, 6% 78%, 0% 43%, 17% 12%)"
+const decagon = "polygon(50% 0%, 80% 10%, 100% 35%, 100% 70%, 80% 90%, 50% 100%, 20% 90%, 0% 70%, 0% 35%, 20% 10%)"
 
 // Persona Poderosa
 const defaultPersonaPoderosa = [
@@ -133,13 +133,14 @@ const Levels = {
             { "image": famaPersonaPoderosa, "label": "Fama", "replacementIndex": 2 },
             { "image": hombrePersonaPoderosa, "label": "Hombre", "replacementIndex": 3 }
         ],
-        "poliForm": [octagon, hexagon],
+        "poliForm": [trapezoid, parallelogram],
         "poliNum": 3,
         "badPoliNum": 1,
         "poliText": ["Dinero", "Poder", "Fama"],
         "badPoliText": ["Hombre"],
         "points": 0,
-        "levelDescription": { "header": "Nivel 1", "body": "¡Oh, no! Parece que el algoritmo no está mostrando lo que es una Persona poderosa correctamente.", "footer": "Por favor, ¡Arréglalo! Para ello, encuentra la característica que no se relacione con el tema y ¡elimina la!" }
+        "levelDescription": { "header": "Nivel 1", "body": "¡Oh, no! Parece que el algoritmo no está mostrando lo que es una Persona poderosa correctamente.", "footer": "Por favor, ¡Arréglalo! Para ello, encuentra la característica que no se relacione con el tema y ¡elimina la!" },
+        "endLevelDescription": { "header": "¡Buen trabajo!", "body": "El algoritmo ha creído que una persona poderosa solo puede ser un hombre." }
     },
     2:
     {
@@ -151,13 +152,14 @@ const Levels = {
             { "image": sanitarioFarmaciaProfesion, "label": "Sanitario", "replacementIndex": 2 },
             { "image": mujeresFarmaciaProfesion, "label": "Mujeres", "replacementIndex": 3 }
         ],
-        "poliForm": [octagon, hexagon],
+        "poliForm": [pentagon, hexagon],
         "poliNum": 3,
         "badPoliNum": 1,
         "poliText": ["Bata", "Fármaco", "Sanitario"],
         "badPoliText": ["Mujeres"],
         "points": 0,
-        "levelDescription": { "header": "hola header", "body": "hola body", "footer": "hola footer" }
+        "levelDescription": { "header": "Nivel 2", "body": "El algoritmo está mostrando de manera equivocada la profesión de farmacia.", "footer": "¡Hay que solucionarlo!" },
+        "endLevelDescription": { "header": "¡Muy bien visto!", "body": "La profesión de farmacia no se asocia solo con las mujeres." }
     },
     3:
     {
@@ -169,13 +171,14 @@ const Levels = {
             { "image": floresBelleza, "label": "Flores", "replacementIndex": 3 },
             { "image": maquillajeBelleza, "label": "Maquillaje", "replacementIndex": 1 },
         ],
-        "poliForm": [octagon, hexagon],
+        "poliForm": [hexagon, pentagon],
         "poliNum": 3,
         "badPoliNum": 1,
         "poliText": ["Colores", "Flores", "Cuidados"],
         "badPoliText": ["Maquillaje"],
         "points": 0,
-        "levelDescription": { "header": "hola header", "body": "hola body", "footer": "hola footer" }
+        "levelDescription": { "header": "Nivel 3", "body": "Parece que hay otro error en el algoritmo, esta vez con la belleza.", "footer": "¡Hay que hacer algo!" },
+        "endLevelDescription": { "header": "¡Bien hecho!", "body": "La belleza no se debería basar en el maquillaje." }
     },
     4:
     {
@@ -187,13 +190,14 @@ const Levels = {
             { "image": ternuraEmocionesHombre, "label": "Ternura", "replacementIndex": 2 },
             { "image": impasibleEmocionesHombre, "label": "Impasible", "replacementIndex": 3 }
         ],
-        "poliForm": [octagon, hexagon],
+        "poliForm": [hexagon, heptagon],
         "poliNum": 3,
         "badPoliNum": 1,
         "poliText": ["Empatia", "Amor", "Ternura"],
         "badPoliText": ["Impasible"],
         "points": 0,
-        "levelDescription": { "header": "hola header", "body": "hola body", "footer": "hola footer" }
+        "levelDescription": { "header": "Nivel 4", "body": "Nos enfrentamos a otro desafío: el algoritmo está distorsionando las emociones de un hombre.", "footer": "¡Vamos a solucionarlo!" },
+        "endLevelDescription": { "header": "¡Gran trabajo!", "body": "Los hombres no deberían de ser siempre impasible." }
     },
     5:
     {
@@ -205,13 +209,14 @@ const Levels = {
             { "image": familiaLatinos, "label": "Familia", "replacementIndex": 2 },
             { "image": criminalLatinos, "label": "Criminal", "replacementIndex": 3 }
         ],
-        "poliForm": [octagon, hexagon],
+        "poliForm": [heptagon, octagon],
         "poliNum": 3,
         "badPoliNum": 1,
         "poliText": ["Latinoamérica", "Música", "Familia"],
         "badPoliText": ["Criminal"],
         "points": 0,
-        "levelDescription": { "header": "hola header", "body": "hola body", "footer": "hola footer" }
+        "levelDescription": { "header": "Nivel 5", "body": "¡Otro problema con el algoritmo! Está mostrando características erróneas sobre los latinos.", "footer": "¡Hay que arreglarlo!" },
+        "endLevelDescription": { "header": "¡Increíble!", "body": "El algoritmo estaba representando a los latinos como criminales." }
     },
     6:
     {
@@ -224,13 +229,14 @@ const Levels = {
             { "image": fragilPersonasMayores, "label": "Frágil", "replacementIndex": 3 },
             { "image": olvidadizoPersonasMayores, "label": "Olvidadizo", "replacementIndex": 4 }
         ],
-        "poliForm": [octagon, hexagon],
+        "poliForm": [nonagon, octagon],
         "poliNum": 3,
         "badPoliNum": 2,
         "poliText": ["Experiencia", "Sabiduría", "Mentores"],
         "badPoliText": ["Frágil", "Olvidadizo"],
         "points": 0,
-        "levelDescription": { "header": "hola header", "body": "hola body", "footer": "hola footer" }
+        "levelDescription": { "header": "Nivel 6", "body": "El algoritmo está representando de forma errónea a las personas mayores, lo cual es problemático.", "footer": "¡Es momento de solucionarlo!" },
+        "endLevelDescription": { "header": "¡Muy bien!", "body": "Las personas mayores no deberían ser definidas como olvidadizas y frágiles." }
     },
     7:
     {
@@ -245,13 +251,14 @@ const Levels = {
             { "image": bellezaRopaTrabajoMujeres, "label": "Belleza", "replacementIndex": 5 },
             { "image": modaRopaTrabajoMujeres, "label": "Moda", "replacementIndex": 6 }
         ],
-        "poliForm": [octagon, hexagon],
+        "poliForm": [nonagon, decagon],
         "poliNum": 4,
         "badPoliNum": 3,
         "poliText": ["Comodidad", "Calidad", "Practico", "Utilidad"],
         "badPoliText": ["Estilo", "Belleza", "Moda"],
         "points": 0,
-        "levelDescription": { "header": "hola header", "body": "hola body", "footer": "hola footer" }
+        "levelDescription": { "header": "Nivel 7", "body": "Hay que solucionar los resultados que se muestran sobre la ropa de trabajo para mujeres.", "footer": "¡Vamos a ello!" },
+        "endLevelDescription": { "header": "¡Impresionante!", "body": "La ropa de trabajo no se debería de asociar con el estilo, la belleza y la moda." }
     },
     8:
     {
@@ -267,13 +274,14 @@ const Levels = {
             { "image": maquillajeJugueteParaNiñas, "label": "Maquillaje", "replacementIndex": 6 },
             { "image": cuidadoJugueteParaNiñas, "label": "Cuidado", "replacementIndex": 7 }
         ],
-        "poliForm": [octagon, hexagon],
+        "poliForm": [decagon, nonagon],
         "poliNum": 4,
         "badPoliNum": 4,
         "poliText": ["Comodidad", "Calidad", "Figuras", "Simple"],
         "badPoliText": ["Rosa", "Cocina", "Maquillaje", "Cuidado"],
         "points": 0,
-        "levelDescription": { "header": "hola header", "body": "hola body", "footer": "hola footer" }
+        "levelDescription": { "header": "Nivel 8", "body": "¡Oh no! Está mostrando imágenes que no tocan de juguetes para niñas.", "footer": "¡Rápido, hay que solucionarlo!" },
+        "endLevelDescription": { "header": "¡Magnifico!", "body": "Los juguetes para niñas no se deberían representar con el color rosa, ni deberían estar solo enfocados a la cocina, la belleza y el cuidado." }
     },
 }
 
