@@ -16,56 +16,79 @@ let timer;
 const numOfLevels = Object.keys(Database.Levels).length;
 const levels = Database.Levels;
 let totalPoints = ref(0);
+let canEnd = ref(false);
+let showEndOfMinigame = ref(false);
+const neededPoint = 1;
 
-function startClock(){
+function startClock() {
   time.value = 0;
-  if(!timer) timer = setInterval(() => {time.value++;}, 1000);
+  if (!timer) timer = setInterval(() => { time.value++; }, 1000);
 }
-function stopClock(){
+function stopClock() {
   clearInterval(timer);
   timer = null;
 }
 
-function setTotalPoints(){
+function setTotalPoints() {
   totalPoints.value = 0;
-  for(let i = 1; i <= numOfLevels; i++){
+  for (let i = 1; i <= numOfLevels; i++) {
     totalPoints.value += levels[i]['points'];
+  }
+  if (totalPoints.value >= neededPoint){
+    canEnd = true;
   }
 }
 </script>
 
 <template>
-  <div class="startScreen" v-show="!isLevel&&isStart">
-    <button class="startButton" @click="isStart = false">Start</button>
-    <button class="infoButton" @click="showInfo = true">Info</button>
+  <div class="startScreen" v-show="!isLevel && isStart">
+    <button class="startButton" @click="isStart = false">Empezar</button>
+    <button class="infoButton" @click="showInfo = true">Información</button>
     <Teleport to="body">
       <modal :show="showInfo">
         <template #header>
           <h1>¡Ayuda!</h1>
         </template>
         <template #body>
-          <p>El algoritmo de Google imagenes ha empezado a fallar, y esta causando que los resultados esten llenos de estereotipos.
-Porfavor ayudanos a arreglarlo.</p>
+          <p>Antes de continuar, por favor completa el siguiente formulario:</p>
+          <a href="https://forms.gle/gdAuSTLh4DuwDR7h9" target="_blank">https://forms.gle/gdAuSTLh4DuwDR7h9</a>
         </template>
         <template #footer>
-          <p>¡Debemos arreglarlo cuanto antes mejor!</p>
-          <button
-              class="modal-default-button"
-              @click="showInfo = false"
-            >¡Vale!</button>
+          <p>El algoritmo de Google imagenes ha empezado a fallar, y esta causando que los resultados esten llenos de
+            estereotipos.
+            Porfavor ayudanos a arreglarlo.</p>
+          <button class="modal-default-button" @click="showInfo = false">¡Vale!</button>
         </template>
       </modal>
     </Teleport>
   </div>
 
-  <div class="levelsScreen" v-show="!isLevel&&!isStart">
-    <p class="totalPoints">Total Points: {{ totalPoints }}</p>
+  <div class="levelsScreen" v-show="!isLevel && !isStart">
+    <p class="totalPoints">Puntos Totales: {{ totalPoints }}</p>
     <div class="levelsButtons">
       <div v-for="i in numOfLevels">
-        <button @click="$refs.level.resetLevel(); isLevel = true; levelNum = i; showLevelInfo = true; time = 0;">Level {{i}} <br /> {{ levels[i]['points'] }} points</button>
+        <button @click="$refs.level.resetLevel(); isLevel = true; levelNum = i; showLevelInfo = true; time = 0;">Nivel {{ i }} <br /> {{ levels[i]['points'] }} puntos</button>
       </div>
     </div>
-    <button class="backButton"  @click="isStart = true; isLevel = false;">Back</button>
+    <div class="backAndEnd">
+      <button class="backButton" @click="isStart = true; isLevel = false;">Atrás</button>
+      <button @click="showEndOfMinigame = true" class="endButton" :class="{ 'noHover': canEnd == false }"><p v-if="canEnd == true">Finalizar</p> <p v-if="canEnd == false">Necesitas {{ neededPoint - totalPoints }} puntos</p></button>
+    </div>
+    <Teleport to="body">
+      <modal :show="showEndOfMinigame">
+        <template #header>
+          <h1>Fin</h1>
+        </template>
+        <template #body>
+          <p>Formulario</p>
+          <a href="https://forms.gle/Fe3Kvsy7cZGNKrS19" target="_blank">https://forms.gle/Fe3Kvsy7cZGNKrS19</a>
+        </template>
+        <template #footer>
+          <p>Gracias!</p>
+          <button class="modal-default-button" @click="showEndOfMinigame = false">Vale</button>
+        </template>
+      </modal>
+    </Teleport>
   </div>
 
   <div v-show="isLevel">
@@ -79,35 +102,25 @@ Porfavor ayudanos a arreglarlo.</p>
         </template>
         <template #footer>
           <p>{{ levels[levelNum]['levelDescription']['footer'] }}</p>
-          <button
-              class="modal-default-button"
-              @click="showLevelInfo = false; startClock();"
-            >¡Vale!</button>
+          <button class="modal-default-button" @click="showLevelInfo = false; startClock();">¡Vale!</button>
         </template>
       </modal>
     </Teleport>
     <p class="time">{{ time }}</p>
-    <Level :defaultImages="levels[levelNum]['defaultImages']"
-        :replacementImages="levels[levelNum]['replacementImages']"
-        :poliForm="levels[levelNum]['poliForm'][0]"
-        :badPoliForm="levels[levelNum]['poliForm'][1]"
-        :placeholder="levels[levelNum]['placeholder']"
-        :poliNum="levels[levelNum]['poliNum']"
-        :badPoliNum="levels[levelNum]['badPoliNum']"
-        :poliText="levels[levelNum]['poliText']"
-        :badPoliText="levels[levelNum]['badPoliText']"
-        :levelNum="levelNum"
-        :time="time"
-        ref="level"/>
+    <Level :defaultImages="levels[levelNum]['defaultImages']" :replacementImages="levels[levelNum]['replacementImages']"
+      :poliForm="levels[levelNum]['poliForm'][0]" :badPoliForm="levels[levelNum]['poliForm'][1]"
+      :placeholder="levels[levelNum]['placeholder']" :poliNum="levels[levelNum]['poliNum']"
+      :badPoliNum="levels[levelNum]['badPoliNum']" :poliText="levels[levelNum]['poliText']"
+      :badPoliText="levels[levelNum]['badPoliText']" :levelNum="levelNum" :time="time" ref="level" />
     <div class="levelButtons">
-      <button @click="isLevel = false; stopClock();">Back</button>
-      <button @click="$refs.level.setPoints(); setTotalPoints(); showEndLevel = true; stopClock();">Submit</button>
+      <button @click="isLevel = false; stopClock();">Atrás</button>
+      <button @click="$refs.level.setPoints(); setTotalPoints(); showEndLevel = true; stopClock();">Finalizar</button>
       <Teleport to="body">
-          <modal :show="showEndLevel" @close="showEndLevel = false; isLevel = false;">
-              <template #header>
-                  <h3>End level</h3>
-              </template>
-          </modal>
+        <modal :show="showEndLevel" @close="showEndLevel = false; isLevel = false;">
+          <template #header>
+            <h3>Acabar</h3>
+          </template>
+        </modal>
       </Teleport>
     </div>
   </div>
@@ -115,11 +128,11 @@ Porfavor ayudanos a arreglarlo.</p>
 
 <style>
 body {
-  background-color:#ffffff;
-  background-image:url(https://www.xtrafondos.com/wallpapers/resoluciones/21/degradado-difuminado-azul_2560x1440_7935.jpg);
-  background-repeat:no-repeat;
-  background-position:top left;
-  background-attachment:fixed;
+  background-color: #ffffff;
+  background-image: url(https://www.xtrafondos.com/wallpapers/resoluciones/21/degradado-difuminado-azul_2560x1440_7935.jpg);
+  background-repeat: no-repeat;
+  background-position: top left;
+  background-attachment: fixed;
   height: 100%;
 }
 
@@ -133,42 +146,51 @@ body {
   height: 97vh;
 }
 
-.startButton { grid-area: 2 / 3 / 3 / 4; }
-.infoButton { grid-area: 4 / 3 / 5 / 4; }
+.startButton {
+  grid-area: 2 / 3 / 3 / 4;
+}
 
-.levelsScreen{
+.infoButton {
+  grid-area: 4 / 3 / 5 / 4;
+}
+
+.levelsScreen {
   display: grid;
   grid-template-rows: 0.1fr 0.8fr 0.1fr;
   grid-auto-flow: row dense;
   justify-items: center;
 }
 
-.levelsButtons{
+.levelsButtons {
   grid-row: 2;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 10px;
   grid-template-rows: repeat(5, 1fr);
   place-items: center;
-  height: 100%;
+  height: 70vh;
   width: 80%;
 }
 
-.totalPoints { 
+.totalPoints {
   text-align: center;
   background-color: whitesmoke;
   border: solid 1px grey;
   border-radius: 16px;
   width: 15%;
   height: 40%;
-  font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-family: system-ui, -apple-system, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 16px;
   font-weight: 600;
 }
 
-.backButton { 
-  align-items: center;
-  width: min-content;
+.backAndEnd {
+  display: grid;
+  position: absolute;
+  grid-template-columns: repeat(2, 1fr);
+  bottom: 5%;
+  /* right: 50%; */
+  column-gap: 100px;
 }
 
 /* button */
@@ -182,7 +204,7 @@ button {
   color: rgba(0, 0, 0, 0.85);
   cursor: pointer;
   display: inline-flex;
-  font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-family: system-ui, -apple-system, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 16px;
   font-weight: 600;
   justify-content: center;
@@ -222,8 +244,8 @@ button:active {
 /* Level */
 .time {
   align-self: center;
-  font-family:'digital-clock-font';
-  font-size:xx-large;
+  font-family: 'digital-clock-font';
+  font-size: xx-large;
   margin: 1%;
   text-align: center;
   text-decoration-color: #F0F0F1;
@@ -237,13 +259,18 @@ button:active {
   display: grid;
   position: absolute;
   grid-template-columns: repeat(2, 1fr);
-  bottom: 5%;
+  bottom: 10%;
   right: 50%;
-  column-gap: 100px;
+  column-gap: 100%;
 }
 
-@font-face{
- font-family:'digital-clock-font';
- src: url('./fonts/digital-7.ttf');
+@font-face {
+  font-family: 'digital-clock-font';
+  src: url('./fonts/digital-7.ttf');
+}
+
+.noHover {
+  pointer-events: none;
+  background-color: #ffffff81;
 }
 </style>

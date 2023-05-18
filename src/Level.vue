@@ -115,9 +115,7 @@ defineExpose({ setPoints, resetLevel })
 .images-container {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    grid-template-rows: repeat(2, minmax(0, 1fr));
-    /* max-width: 100%;
-    max-height: 70%; */
+    grid-template-rows: repeat(2, minmax(0, 1fr)); /*Cambiar cuando sean mas de 6 */
     height: 100%;
     grid-column-gap: 2px;
     grid-row-gap: 2px;

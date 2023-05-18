@@ -20,8 +20,8 @@ const defaultImagesPersonaPoderosa = [
     "https://peruretail.sfo3.cdn.digitaloceanspaces.com/wp-content/uploads/ricos-1-scaled.jpg",
     "https://ichef.bbci.co.uk/news/1024/branded_mundo/1098B/production/_101297976_p066x3d2.jpg"
 ]
-const dineroPersonaPoderosa = ""
-const poderPersonaPoderosa = ""
+const dineroPersonaPoderosa = "https://img.freepik.com/foto-gratis/persona-poderosa-victoria-fondo-humano_1368-2023.jpg?w=2000"
+const poderPersonaPoderosa = "https://www.altonivel.com.mx/assets/images/Consultoria/powerful.jpg"
 const famaPersonaPoderosa = "https://ichef.bbci.co.uk/news/640/cpsprodpb/ADBC/production/_98167444_gettyimages-519436035-1.jpg"
 const hombrePersonaPoderosa = "https://forbes.es/wp-content/uploads/2021/12/https___specials-images.forbesimg.com_imageserve_61af598c4bc56e3b57f5a29b_Forbes-2021-World-s-Most-Powerful-Women-List_960x0.jpg"
 
