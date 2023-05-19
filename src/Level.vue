@@ -115,6 +115,7 @@ watch(() => props.defaultImages, (newVal) => {  // When enter level
     correctPoligons = [];
 
     // Random order
+    poligonsDict = [];
     setPoligonsDict();
 })
 

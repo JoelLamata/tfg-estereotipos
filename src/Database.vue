@@ -266,7 +266,7 @@ const Levels = {
         "defaultImages": defaultJuguetesParaNiñas,
         "replacementImages": [
             { "image": juegoJugueteParaNiñas, "label": "Juego", "replacementIndex": 0 },
-            { "image": pequeñoJugueteParaNiñas, "label": "Paqueño", "replacementIndex": 4 },
+            { "image": pequeñoJugueteParaNiñas, "label": "Pequeño", "replacementIndex": 4 },
             { "image": figurasJugueteParaNiñas, "label": "Figuras", "replacementIndex": 5 },
             { "image": simpleJugueteParaNiñas, "label": "Simple", "replacementIndex": 6 },
             { "image": rosaJugueteParaNiñas, "label": "Rosa", "replacementIndex": 7 },
@@ -277,7 +277,7 @@ const Levels = {
         "poliForm": [decagon, nonagon],
         "poliNum": 4,
         "badPoliNum": 4,
-        "poliText": ["Juego", "Paqueño", "Figuras", "Simple"],
+        "poliText": ["Juego", "Pequeño", "Figuras", "Simple"],
         "badPoliText": ["Rosa", "Cocina", "Maquillaje", "Cuidado"],
         "points": 0,
         "levelDescription": { "header": "Nivel 8", "body": "¡Oh no! Está mostrando imágenes que no tocan de juguetes para niñas.", "footer": "¡Rápido, hay que solucionarlo!" },
