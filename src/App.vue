@@ -81,7 +81,7 @@ function setTotalPoints() {
         </template>
         <template #body>
           <p>Has completado el minijuego. Por favor, ahora continua con el cuestionario.</p>
-          <a href="https://forms.gle/Fe3Kvsy7cZGNKrS19" target="_blank">https://forms.gle/Fe3Kvsy7cZGNKrS19</a>
+          <!-- <a href="https://forms.gle/Fe3Kvsy7cZGNKrS19" target="_blank">https://forms.gle/Fe3Kvsy7cZGNKrS19</a> -->
         </template>
         <template #footer>
           <p>¡Muchas gracias!</p>
