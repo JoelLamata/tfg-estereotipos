@@ -27,7 +27,7 @@ function setPoligonsDict(){
         }
     }
     shuffle(poligonsDict)
-    console.log(poligonsDict)
+    // console.log(poligonsDict)
 }
 
 function setPoints() {
@@ -40,7 +40,7 @@ function setPoints() {
             points = 100 - props.time + props.badPoliNum;
         }
     }
-    console.log(points);
+    // console.log(points);
     if (actualPoints < points) {
         Database.Levels[props.levelNum]['points'] = points;
     }
@@ -58,7 +58,7 @@ function isOnSquare(e) { //Cambiar nombre?
         if (props.badPoliText.includes(label)) {
             correctPoligons.push(label);
         }
-        console.log(correctPoligons)
+        // console.log(correctPoligons)
     }
     else {
         changeImage(label, true);
@@ -66,7 +66,7 @@ function isOnSquare(e) { //Cambiar nombre?
         if (idx != -1) {
             correctPoligons.splice(idx, 1);
         }
-        console.log(correctPoligons)
+        // console.log(correctPoligons)
     }
 }
 
@@ -84,10 +84,10 @@ function changeImage(label, toDefault) {
 
 async function resetLevel() {
     // Reset poligons position
-    for (let i = 0; i < props.poliNum + props.badPoliNum; i++) {
-        this.$refs.poligons.children[i].style["top"] = ""
-        this.$refs.poligons.children[i].style["left"] = ""
-    }
+    // for (let i = 0; i < props.poliNum + props.badPoliNum; i++) {
+    //     this.$refs.poligons.children[i].style["top"] = ""
+    //     this.$refs.poligons.children[i].style["left"] = ""
+    // }
 
 }
 
@@ -119,7 +119,11 @@ watch(() => props.defaultImages, (newVal) => {  // When enter level
     setPoligonsDict();
 
     // Reset position
-
+    var poligons = document.getElementsByClassName("poligon")
+    for(let i = 0; i < poligons.length; i++){
+        poligons[i].style.top = '';
+        poligons[i].style.left = '';
+    }
 })
 
 defineExpose({ setPoints, resetLevel })
@@ -134,11 +138,7 @@ defineExpose({ setPoints, resetLevel })
             </div>
         </div>
         <div class="poligons" ref="poligons">
-            <!-- <poligon v-for="i in props.badPoliNum" :poliForm="props.badPoliForm" :text="props.badPoliText[i - 1]"
-                @click="isOnSquare" class="poligon" />
-            <poligon v-for="i in props.poliNum" :poliForm="props.poliForm" :text="props.poliText[i - 1]" @click="isOnSquare"
-                class="poligon" /> -->
-            <poligon v-for="pol in poligonsDict" :poliForm="pol['form']" :text="pol['text']" @click="isOnSquare"/>
+            <poligon v-for="pol in poligonsDict" :poliForm="pol['form']" :text="pol['text']" @click="isOnSquare" class="poligon"/>
             <div class="basura">
                 <img src="https://cdn.icon-icons.com/icons2/1791/PNG/512/trashcan1_114647.png">
             </div>

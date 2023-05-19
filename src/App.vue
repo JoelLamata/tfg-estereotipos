@@ -18,7 +18,7 @@ const levels = Database.Levels;
 let totalPoints = ref(0);
 let canEnd = ref(false);
 let showEndOfMinigame = ref(false);
-const neededPoint = 1;
+const neededPoint = 640;
 
 function startClock() {
   time.value = 0;
@@ -77,14 +77,14 @@ function setTotalPoints() {
     <Teleport to="body">
       <modal :show="showEndOfMinigame">
         <template #header>
-          <h1>Fin</h1>
+          <h1>¡Felicidades!</h1>
         </template>
         <template #body>
-          <p>Formulario</p>
+          <p>Has completado el minijuego. Por favor, ahora continua con el cuestionario.</p>
           <a href="https://forms.gle/Fe3Kvsy7cZGNKrS19" target="_blank">https://forms.gle/Fe3Kvsy7cZGNKrS19</a>
         </template>
         <template #footer>
-          <p>Gracias!</p>
+          <p>¡Muchas gracias!</p>
           <button class="modal-default-button" @click="showEndOfMinigame = false">Vale</button>
         </template>
       </modal>
