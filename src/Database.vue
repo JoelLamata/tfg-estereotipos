@@ -140,7 +140,7 @@ const Levels = {
         "badPoliText": ["Hombre"],
         "points": 0,
         "lastPoints": 0,
-        "levelDescription": { "header": "Nivel 1", "body": "¡Oh, no! Parece que el algoritmo no está mostrando lo que es una Persona poderosa correctamente.", "footer": "Por favor, ¡Arréglalo! Para ello, encuentra la característica que no se relacione con el tema y ¡elimina la!" },
+        "levelDescription": { "header": "Nivel 1", "body": "¡Oh, no! Parece que el algoritmo no está mostrando lo que es una persona poderosa correctamente.", "footer": "Por favor, ¡Arréglalo! Para ello, encuentra la característica que no se relacione con el tema y ¡elimina la!" },
         "endLevelDescription": { "header": "¡Buen trabajo!", "body": "El algoritmo ha creído que una persona poderosa solo puede ser un hombre." }
     },
     2:

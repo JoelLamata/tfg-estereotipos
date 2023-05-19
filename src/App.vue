@@ -152,6 +152,10 @@ body {
   height: 100%;
 }
 
+p, h1, h2, h3 {
+  font-family: system-ui, -apple-system, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
 /* Grid */
 .startScreen {
   display: grid;
