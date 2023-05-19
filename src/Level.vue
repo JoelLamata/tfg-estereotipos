@@ -84,11 +84,10 @@ function changeImage(label, toDefault) {
 
 async function resetLevel() {
     // Reset poligons position
-    // for (let i = 0; i < props.poliNum + props.badPoliNum; i++) {
-    //     this.$refs.poligons.children[i].style["top"] = ""
-    //     this.$refs.poligons.children[i].style["left"] = ""
-    // }
-
+    for (let i = 0; i < props.poliNum + props.badPoliNum; i++) {
+        this.$refs.poligons.children[i].style["top"] = ""
+        this.$refs.poligons.children[i].style["left"] = ""
+    }
 }
 
 function shuffle(array) {
@@ -117,13 +116,6 @@ watch(() => props.defaultImages, (newVal) => {  // When enter level
 
     // Random order
     setPoligonsDict();
-
-    // Reset position
-    var poligons = document.getElementsByClassName("poligon")
-    for(let i = 0; i < poligons.length; i++){
-        poligons[i].style.top = '';
-        poligons[i].style.left = '';
-    }
 })
 
 defineExpose({ setPoints, resetLevel })
