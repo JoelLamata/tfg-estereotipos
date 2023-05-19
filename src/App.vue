@@ -129,7 +129,7 @@ function setTotalPoints() {
         </template>
         <template #body>
           <p v-if="levels[levelNum]['points'] != 0">{{ levels[levelNum]['endLevelDescription']['body'] }}</p>
-          <p v-else>Sigue habiendo algún problema con el algoritmo.</p>
+          <p v-else>Sigue habiendo problemas con el algoritmo.</p>
         </template>
         <template #footer>
           <p v-if="levels[levelNum]['points'] != 0">{{ levels[levelNum]['endLevelDescription']['footer'] }}</p>
@@ -180,12 +180,12 @@ body {
 .levelsButtons {
   grid-row: 2;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 10px;
-  grid-template-rows: repeat(5, 1fr);
+  grid-template-rows: repeat(2, 1fr);
   place-items: center;
-  height: 70vh;
-  width: 80%;
+  height: 60vh;
+  width: 50%;
 }
 
 .totalPoints {

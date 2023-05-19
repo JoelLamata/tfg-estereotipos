@@ -13,11 +13,17 @@ let correctPoligons = [];
 
 function setPoints() {
     let actualPoints = Database.Levels[props.levelNum]['points'];
-    let points = correctPoligons.length * Math.floor(100 / props.time);  //Cambiar
+    let points = 0
+    if(correctPoligons.length == props.badPoliNum){
+        if(props.time <= props.badPoliNum){
+            points = 100;
+        } else {
+            points = 100 - props.time + props.badPoliNum;
+        }
+    }
     console.log(points);
     if (actualPoints < points) {
         Database.Levels[props.levelNum]['points'] = points;
-        console.log(Database.Levels[props.levelNum]['points'])
     }
 }
 
