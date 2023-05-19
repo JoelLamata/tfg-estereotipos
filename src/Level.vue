@@ -7,9 +7,28 @@ import _ from 'lodash'
 
 const props = defineProps(['defaultImages', 'replacementImages', 'placeholder', 'poliForm', 'badPoliForm', 'poliNum', 'badPoliNum', 'poliText', 'badPoliText', 'levelNum', 'time'])
 
-let defImgs = _.cloneDeep(props.defaultImages)
+let defImgs = _.cloneDeep(props.defaultImages);
 let imagesToShow = _.cloneDeep(props.defaultImages);
 let correctPoligons = [];
+var poligonsDict = [];
+setPoligonsDict();
+
+function setPoligonsDict(){
+    for(let i = 0; i < props.poliNum; i++){
+        poligonsDict[i] = {
+            form: props.poliForm,
+            text: props.poliText[i]
+        }
+    }
+    for(let i = 0; i < props.badPoliNum; i++){
+        poligonsDict[i + props.poliNum] = {
+            form: props.badPoliForm,
+            text: props.badPoliText[i]
+        }
+    }
+    shuffle(poligonsDict)
+    console.log(poligonsDict)
+}
 
 function setPoints() {
     let actualPoints = Database.Levels[props.levelNum]['points'];
@@ -69,14 +88,38 @@ async function resetLevel() {
         this.$refs.poligons.children[i].style["top"] = ""
         this.$refs.poligons.children[i].style["left"] = ""
     }
-    // Reset image
-    // imagesToShow = props.defaultImages;
-    correctPoligons = [];
+
 }
 
-watch(() => props.defaultImages, (newVal) => {
+function shuffle(array) {
+  let currentIndex = array.length,  randomIndex;
+
+  // While there remain elements to shuffle.
+  while (currentIndex != 0) {
+
+    // Pick a remaining element.
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // And swap it with the current element.
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex], array[currentIndex]];
+  }
+
+  return array;
+}
+
+watch(() => props.defaultImages, (newVal) => {  // When enter level
     defImgs = _.cloneDeep(props.defaultImages)
     imagesToShow = _.cloneDeep(newVal);
+    // Reset correct poligons
+    correctPoligons = [];
+
+    // Random order
+    setPoligonsDict();
+
+    // Reset position
+
 })
 
 defineExpose({ setPoints, resetLevel })
@@ -91,10 +134,11 @@ defineExpose({ setPoints, resetLevel })
             </div>
         </div>
         <div class="poligons" ref="poligons">
+            <!-- <poligon v-for="i in props.badPoliNum" :poliForm="props.badPoliForm" :text="props.badPoliText[i - 1]"
+                @click="isOnSquare" class="poligon" />
             <poligon v-for="i in props.poliNum" :poliForm="props.poliForm" :text="props.poliText[i - 1]" @click="isOnSquare"
-                :id="'poli-' + i" />
-            <poligon v-for="i in props.badPoliNum" :poliForm="props.badPoliForm" :text="props.badPoliText[i - 1]"
-                @click="isOnSquare" :id="'badpoli-' + i" />
+                class="poligon" /> -->
+            <poligon v-for="pol in poligonsDict" :poliForm="pol['form']" :text="pol['text']" @click="isOnSquare"/>
             <div class="basura">
                 <img src="https://cdn.icon-icons.com/icons2/1791/PNG/512/trashcan1_114647.png">
             </div>
