@@ -124,15 +124,15 @@ function setTotalPoints() {
       <Teleport to="body">
         <modal :show="showEndLevel">
           <template #header>
-          <h1 v-if="levels[levelNum]['points'] != 0">{{ levels[levelNum]['endLevelDescription']['header'] }}</h1>
+          <h1 v-if="levels[levelNum]['lastPoints'] != 0">{{ levels[levelNum]['endLevelDescription']['header'] }}</h1>
           <h1 v-else>¡Cuidado!</h1>
         </template>
         <template #body>
-          <p v-if="levels[levelNum]['points'] != 0">{{ levels[levelNum]['endLevelDescription']['body'] }}</p>
+          <p v-if="levels[levelNum]['lastPoints'] != 0">{{ levels[levelNum]['endLevelDescription']['body'] }}</p>
           <p v-else>Sigue habiendo problemas con el algoritmo.</p>
         </template>
         <template #footer>
-          <p v-if="levels[levelNum]['points'] != 0">{{ levels[levelNum]['endLevelDescription']['footer'] }}</p>
+          <p v-if="levels[levelNum]['lastPoints'] != 0">{{ levels[levelNum]['endLevelDescription']['footer'] }}</p>
           <p v-else>¡Sigue intentándolo!</p>
           <button class="modal-default-button" @click="showEndLevel = false; isLevel = false;">Acabar</button>
         </template>

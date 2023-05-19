@@ -9,7 +9,7 @@ const props = defineProps(['defaultImages', 'replacementImages', 'placeholder', 
 
 let defImgs = _.cloneDeep(props.defaultImages);
 let imagesToShow = _.cloneDeep(props.defaultImages);
-let correctPoligons = [];
+let poligonsInBasura = [];
 var poligonsDict = [];
 setPoligonsDict();
 
@@ -33,7 +33,8 @@ function setPoligonsDict(){
 function setPoints() {
     let actualPoints = Database.Levels[props.levelNum]['points'];
     let points = 0
-    if(correctPoligons.length == props.badPoliNum){
+    if(isLevelCorrect()){
+
         if(props.time <= props.badPoliNum){
             points = 100;
         } else {
@@ -41,9 +42,23 @@ function setPoints() {
         }
     }
     // console.log(points);
+    Database.Levels[props.levelNum]['lastPoints'] = points;
     if (actualPoints < points) {
         Database.Levels[props.levelNum]['points'] = points;
     }
+}
+
+function isLevelCorrect(){
+    if(poligonsInBasura.length == props.badPoliNum){
+        console.log(poligonsInBasura)
+        for(let i = 0; i < props.badPoliText.length; i++){
+            if(!poligonsInBasura.find(text => props.badPoliText[i] == text)){
+                return false
+            }
+        }
+        return true
+    }
+    return false
 }
 
 function isOnSquare(e) { //Cambiar nombre?
@@ -55,18 +70,16 @@ function isOnSquare(e) { //Cambiar nombre?
         poligonPosition.bottom >= basuraPosition.top &&
         poligonPosition.top <= basuraPosition.bottom) {
         changeImage(label, false);
-        if (props.badPoliText.includes(label)) {
-            correctPoligons.push(label);
-        }
-        // console.log(correctPoligons)
+        poligonsInBasura.push(label);
+        // console.log(poligonsInBasura)
     }
     else {
         changeImage(label, true);
-        const idx = correctPoligons.indexOf(label);
+        const idx = poligonsInBasura.indexOf(label);
         if (idx != -1) {
-            correctPoligons.splice(idx, 1);
+            poligonsInBasura.splice(idx, 1);
         }
-        // console.log(correctPoligons)
+        // console.log(poligonsInBasura)
     }
 }
 
@@ -88,6 +101,8 @@ async function resetLevel() {
         this.$refs.poligons.children[i].style["top"] = ""
         this.$refs.poligons.children[i].style["left"] = ""
     }
+    imagesToShow = _.cloneDeep(defImgs);
+    poligonsInBasura = []
 }
 
 function shuffle(array) {
@@ -112,7 +127,7 @@ watch(() => props.defaultImages, (newVal) => {  // When enter level
     defImgs = _.cloneDeep(props.defaultImages)
     imagesToShow = _.cloneDeep(newVal);
     // Reset correct poligons
-    correctPoligons = [];
+    poligonsInBasura = [];
 
     // Random order
     poligonsDict = [];

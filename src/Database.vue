@@ -139,6 +139,7 @@ const Levels = {
         "poliText": ["Dinero", "Poder", "Fama"],
         "badPoliText": ["Hombre"],
         "points": 0,
+        "lastPoints": 0,
         "levelDescription": { "header": "Nivel 1", "body": "¡Oh, no! Parece que el algoritmo no está mostrando lo que es una Persona poderosa correctamente.", "footer": "Por favor, ¡Arréglalo! Para ello, encuentra la característica que no se relacione con el tema y ¡elimina la!" },
         "endLevelDescription": { "header": "¡Buen trabajo!", "body": "El algoritmo ha creído que una persona poderosa solo puede ser un hombre." }
     },
@@ -158,6 +159,7 @@ const Levels = {
         "poliText": ["Bata", "Fármaco", "Sanitario"],
         "badPoliText": ["Mujeres"],
         "points": 0,
+        "lastPoints": 0,
         "levelDescription": { "header": "Nivel 2", "body": "El algoritmo está mostrando de manera equivocada la profesión de farmacia.", "footer": "¡Hay que solucionarlo!" },
         "endLevelDescription": { "header": "¡Muy bien visto!", "body": "La profesión de farmacia no se asocia solo con las mujeres." }
     },
@@ -177,6 +179,7 @@ const Levels = {
         "poliText": ["Colores", "Flores", "Cuidados"],
         "badPoliText": ["Maquillaje"],
         "points": 0,
+        "lastPoints": 0,
         "levelDescription": { "header": "Nivel 3", "body": "Parece que hay otro error en el algoritmo, esta vez con la belleza.", "footer": "¡Hay que hacer algo!" },
         "endLevelDescription": { "header": "¡Bien hecho!", "body": "La belleza no se debería basar en el maquillaje." }
     },
@@ -196,6 +199,7 @@ const Levels = {
         "poliText": ["Empatia", "Amor", "Ternura"],
         "badPoliText": ["Impasible"],
         "points": 0,
+        "lastPoints": 0,
         "levelDescription": { "header": "Nivel 4", "body": "Nos enfrentamos a otro desafío: el algoritmo está distorsionando las emociones de un hombre.", "footer": "¡Vamos a solucionarlo!" },
         "endLevelDescription": { "header": "¡Gran trabajo!", "body": "Los hombres no deberían de ser siempre impasible." }
     },
@@ -215,6 +219,7 @@ const Levels = {
         "poliText": ["Latinoamérica", "Música", "Familia"],
         "badPoliText": ["Criminal"],
         "points": 0,
+        "lastPoints": 0,
         "levelDescription": { "header": "Nivel 5", "body": "¡Otro problema con el algoritmo! Está mostrando características erróneas sobre los latinos.", "footer": "¡Hay que arreglarlo!" },
         "endLevelDescription": { "header": "¡Increíble!", "body": "El algoritmo estaba representando a los latinos como criminales." }
     },
@@ -235,6 +240,7 @@ const Levels = {
         "poliText": ["Experiencia", "Sabiduría", "Mentores"],
         "badPoliText": ["Frágil", "Olvidadizo"],
         "points": 0,
+        "lastPoints": 0,
         "levelDescription": { "header": "Nivel 6", "body": "El algoritmo está representando de forma errónea a las personas mayores, lo cual es problemático.", "footer": "¡Es momento de solucionarlo!" },
         "endLevelDescription": { "header": "¡Muy bien!", "body": "Las personas mayores no deberían ser definidas como olvidadizas y frágiles." }
     },
@@ -257,6 +263,7 @@ const Levels = {
         "poliText": ["Comodidad", "Calidad", "Practico", "Utilidad"],
         "badPoliText": ["Estilo", "Belleza", "Moda"],
         "points": 0,
+        "lastPoints": 0,
         "levelDescription": { "header": "Nivel 7", "body": "Hay que solucionar los resultados que se muestran sobre la ropa de trabajo para mujeres.", "footer": "¡Vamos a ello!" },
         "endLevelDescription": { "header": "¡Impresionante!", "body": "La ropa de trabajo no se debería de asociar con el estilo, la belleza y la moda." }
     },
@@ -280,6 +287,7 @@ const Levels = {
         "poliText": ["Juego", "Pequeño", "Figuras", "Simple"],
         "badPoliText": ["Rosa", "Cocina", "Maquillaje", "Cuidado"],
         "points": 0,
+        "lastPoints": 0,
         "levelDescription": { "header": "Nivel 8", "body": "¡Oh no! Está mostrando imágenes que no tocan de juguetes para niñas.", "footer": "¡Rápido, hay que solucionarlo!" },
         "endLevelDescription": { "header": "¡Magnifico!", "body": "Los juguetes para niñas no se deberían representar con el color rosa, ni deberían estar solo enfocados a la cocina, la belleza y el cuidado." }
     },
