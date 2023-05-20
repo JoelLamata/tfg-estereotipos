@@ -70,8 +70,10 @@ function isOnSquare(e) { //Cambiar nombre?
         poligonPosition.bottom >= basuraPosition.top &&
         poligonPosition.top <= basuraPosition.bottom) {
         changeImage(label, false);
-        poligonsInBasura.push(label);
-        // console.log(poligonsInBasura)
+        if(!poligonsInBasura.find(item => item == label)){
+            poligonsInBasura.push(label);
+        }
+        console.log(poligonsInBasura)
     }
     else {
         changeImage(label, true);
@@ -79,7 +81,7 @@ function isOnSquare(e) { //Cambiar nombre?
         if (idx != -1) {
             poligonsInBasura.splice(idx, 1);
         }
-        // console.log(poligonsInBasura)
+        console.log(poligonsInBasura)
     }
 }
 

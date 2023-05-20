@@ -82,7 +82,7 @@ const experienciaPersonasMayores = "https://t1.uc.ltmcdn.com/es/posts/2/0/7/como
 const sabiduriaPersonasMayores = "https://susociodenegocios.com/wp-content/uploads/2020/12/joven-ensenando-a-adulto-mayor-a-usar-una-laptop.jpg"
 const mentoresPersonasMayores = "https://teleasistencia.es/images/CSf9v8TF2GnquLL9mVKyPgY6vHxp6l.png"
 const fragilPersonasMayores = "https://teleasistencia.es/images/nxtZuihTeOOTEgxl9PpSS6rl50LTJh.jpg"
-const olvidadizoPersonasMayores = "https://www.fundacionfass.org/wp-content/uploads/2022/09/Funciones-ejecutivas-en-personas-mayores.jpg"
+const olvidadizoPersonasMayores = "https://www.stannah.es/wp-content/uploads/sites/11/2020/07/ayudas-para-personas-mayores.jpg"
 
 // Ropa de trabajo para mujeres
 const defaultRopaTrabajoMujeres = [
