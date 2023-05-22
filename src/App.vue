@@ -9,7 +9,9 @@ let levelNum = ref(1);
 let isLevel = ref(false);
 let isStart = ref(true);
 let time = ref(0);
-let showInfo = ref(true);
+let showInfo1 = ref(true);
+let showInfo2 = ref(false);
+let showInfo3 = ref(false);
 let showLevelInfo = ref(false);
 let showEndLevel = ref(false);
 let timer;
@@ -43,21 +45,43 @@ function setTotalPoints() {
 <template>
   <div class="startScreen" v-show="!isLevel && isStart">
     <button class="startButton" @click="isStart = false">Empezar</button>
-    <button class="infoButton" @click="showInfo = true">Información</button>
+    <button class="infoButton" @click="showInfo1 = true">Información</button>
     <Teleport to="body">
-      <modal :show="showInfo">
+      <modal :show="showInfo1">
+        <template #header>
+          <h1>Por favor</h1>
+        </template>
+        <template #body>
+          <p>Antes de continuar, completa el siguiente formulario:</p>
+          <a href="https://forms.gle/gdAuSTLh4DuwDR7h9" target="_blank">https://forms.gle/gdAuSTLh4DuwDR7h9</a>
+        </template>
+        <template #footer>
+          <button class="modal-default-button" @click="showInfo1 = false; showInfo2 = true">¡Hecho!</button>
+        </template>
+      </modal>
+      <modal :show="showInfo2">
         <template #header>
           <h1>¡Ayuda!</h1>
         </template>
         <template #body>
-          <p>Antes de continuar, por favor completa el siguiente formulario:</p>
-          <a href="https://forms.gle/gdAuSTLh4DuwDR7h9" target="_blank">https://forms.gle/gdAuSTLh4DuwDR7h9</a>
+          <p>El algoritmo de Google imagenes ha empezado a fallar, y esta causando que los resultados esten llenos de
+            estereotipos.</p>
         </template>
         <template #footer>
-          <p>El algoritmo de Google imagenes ha empezado a fallar, y esta causando que los resultados esten llenos de
-            estereotipos.
-            Porfavor ayudanos a arreglarlo.</p>
-          <button class="modal-default-button" @click="showInfo = false">¡Vale!</button>
+          <p>Porfavor ayudanos a arreglarlo.</p>
+          <button class="modal-default-button" @click="showInfo2 = false; showInfo3 = true">¡Vale!</button>
+        </template>
+      </modal>
+      <modal :show="showInfo3">
+        <template #header>
+          <h1>Guia</h1>
+        </template>
+        <template #body>
+          <p>Para completar los niveles, arrastra las palabras que sean estereotipos a la papelera.</p>
+        </template>
+        <template #footer>
+          <img src="https://cdn.icon-icons.com/icons2/1791/PNG/512/trashcan1_114647.png" style="{width: 30px; height: 30px;}">
+          <button class="modal-default-button" @click="showInfo3 = false">¡Vale!</button>
         </template>
       </modal>
     </Teleport>

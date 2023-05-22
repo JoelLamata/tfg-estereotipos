@@ -241,7 +241,7 @@ const Levels = {
         "badPoliText": ["Frágil", "Olvidadizo"],
         "points": 0,
         "lastPoints": 0,
-        "levelDescription": { "header": "Nivel 6", "body": "El algoritmo está representando de forma errónea a las personas mayores, lo cual es problemático.", "footer": "¡Es momento de solucionarlo!" },
+        "levelDescription": { "header": "Nivel 6", "body": "El algoritmo está representando de forma errónea a las personas mayores, lo cual es problemático.", "footer": "¡Cuidado! Parece ser que hay más fallos de lo normal, ¡ten lo en cuenta!" },
         "endLevelDescription": { "header": "¡Muy bien!", "body": "Las personas mayores no deberían ser definidas como olvidadizas y frágiles." }
     },
     7:
