@@ -77,10 +77,13 @@ function setTotalPoints() {
           <h1>Guia</h1>
         </template>
         <template #body>
-          <p>Para completar los niveles, arrastra las palabras que sean estereotipos a la papelera.</p>
+          <p>Para completar los niveles, sigue estos pasos:</p>
+          <p>1. Pon el cursor sobre la palabra que sea un estereotipos.</p>
+          <p>2. Arrastra la palabra hasta la zona con el icono de una papelera.<img src="https://cdn.icon-icons.com/icons2/1791/PNG/512/trashcan1_114647.png" style="{width: 30px; height: 30px;}"></p>
+          
+          <p>3. Cuando esten todas las palabras sobre la zona, pulsa finalizar.</p>
         </template>
         <template #footer>
-          <img src="https://cdn.icon-icons.com/icons2/1791/PNG/512/trashcan1_114647.png" style="{width: 30px; height: 30px;}">
           <button class="modal-default-button" @click="showInfo3 = false">¡Vale!</button>
         </template>
       </modal>
@@ -242,7 +245,7 @@ button {
   align-items: center;
   background-color: #FFFFFF;
   border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: .25rem;
+  border-radius: 1rem;
   box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
   box-sizing: border-box;
   color: rgba(0, 0, 0, 0.85);
