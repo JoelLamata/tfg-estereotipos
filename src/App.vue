@@ -78,10 +78,10 @@ function setTotalPoints() {
         </template>
         <template #body>
           <p>Para completar los niveles, sigue estos pasos:</p>
-          <p>1. Pon el cursor sobre la palabra que sea un estereotipos.</p>
-          <p>2. Arrastra la palabra hasta la zona con el icono de una papelera.<img src="https://cdn.icon-icons.com/icons2/1791/PNG/512/trashcan1_114647.png" style="{width: 30px; height: 30px;}"></p>
-          
-          <p>3. Cuando esten todas las palabras sobre la zona, pulsa finalizar.</p>
+          <p>1. Pon el cursor sobre la palabra que sea un estereotipo.</p>
+          <p>2. Arrastra la palabra hasta la zona con el icono de una papelera.</p>
+          <img src="https://cdn.icon-icons.com/icons2/1791/PNG/512/trashcan1_114647.png" style="{width: 30px; height: 30px;}">
+          <p>3. Cuando estén todas las palabras sobre la zona, pulsa finalizar.</p>
         </template>
         <template #footer>
           <button class="modal-default-button" @click="showInfo3 = false">¡Vale!</button>
@@ -107,7 +107,7 @@ function setTotalPoints() {
           <h1>¡Felicidades!</h1>
         </template>
         <template #body>
-          <p>Has completado el minijuego. Por favor, ahora continua con el cuestionario.</p>
+          <p>Has completado el minijuego. Por favor, ahora continúa con el cuestionario.</p>
           <!-- <a href="https://forms.gle/Fe3Kvsy7cZGNKrS19" target="_blank">https://forms.gle/Fe3Kvsy7cZGNKrS19</a> -->
         </template>
         <template #footer>
@@ -162,6 +162,7 @@ function setTotalPoints() {
           <p v-if="levels[levelNum]['lastPoints'] != 0">{{ levels[levelNum]['endLevelDescription']['footer'] }}</p>
           <p v-else>¡Sigue intentándolo!</p>
           <button class="modal-default-button" @click="showEndLevel = false; isLevel = false;">Acabar</button>
+          <button class="modal-default-button" @click="$refs.level.resetLevel(); startClock(); showEndLevel = false;">Reintentar</button>
         </template>
         </modal>
       </Teleport>

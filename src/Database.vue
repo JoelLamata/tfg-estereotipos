@@ -140,7 +140,7 @@ const Levels = {
         "badPoliText": ["Hombre"],
         "points": 0,
         "lastPoints": 0,
-        "levelDescription": { "header": "Nivel 1", "body": "¡Oh, no! Parece que el algoritmo no está mostrando lo que es una persona poderosa correctamente.", "footer": "Por favor, ¡Arréglalo! Para ello, encuentra la característica que no se relacione con el tema y ¡elimina la!" },
+        "levelDescription": { "header": "Nivel 1", "body": "¡Oh, no! Parece que el algoritmo no está mostrando lo que es una persona poderosa correctamente.", "footer": "Por favor, ¡Arréglalo! Para ello, encuentra la característica que no se relacione con el tema y ¡eliminala!" },
         "endLevelDescription": { "header": "¡Buen trabajo!", "body": "El algoritmo ha creído que una persona poderosa solo puede ser un hombre." }
     },
     2:
@@ -201,7 +201,7 @@ const Levels = {
         "points": 0,
         "lastPoints": 0,
         "levelDescription": { "header": "Nivel 4", "body": "Nos enfrentamos a otro desafío: el algoritmo está distorsionando las emociones de un hombre.", "footer": "¡Vamos a solucionarlo!" },
-        "endLevelDescription": { "header": "¡Gran trabajo!", "body": "Los hombres no deberían de ser siempre impasible." }
+        "endLevelDescription": { "header": "¡Gran trabajo!", "body": "Los hombres no deberían de ser siempre impasibles." }
     },
     5:
     {
@@ -241,7 +241,7 @@ const Levels = {
         "badPoliText": ["Frágil", "Olvidadizo"],
         "points": 0,
         "lastPoints": 0,
-        "levelDescription": { "header": "Nivel 6", "body": "El algoritmo está representando de forma errónea a las personas mayores, lo cual es problemático.", "footer": "¡Cuidado! Parece ser que hay más fallos de lo normal, ¡ten lo en cuenta!" },
+        "levelDescription": { "header": "Nivel 6", "body": "El algoritmo está representando de forma errónea a las personas mayores, lo cual es problemático.", "footer": "¡Cuidado! Parece ser que hay más fallos de lo normal, ¡tenlo en cuenta!" },
         "endLevelDescription": { "header": "¡Muy bien!", "body": "Las personas mayores no deberían ser definidas como olvidadizas y frágiles." }
     },
     7:
@@ -279,13 +279,13 @@ const Levels = {
             { "image": rosaJugueteParaNiñas, "label": "Rosa", "replacementIndex": 7 },
             { "image": cocinaJugueteParaNiñas, "label": "Cocina", "replacementIndex": 1 },
             { "image": maquillajeJugueteParaNiñas, "label": "Maquillaje", "replacementIndex": 2 },
-            { "image": cuidadoJugueteParaNiñas, "label": "Cuidado", "replacementIndex": 3 }
+            { "image": cuidadoJugueteParaNiñas, "label": "Cuidado de bebés", "replacementIndex": 3 }
         ],
         "poliForm": [decagon, nonagon],
         "poliNum": 4,
         "badPoliNum": 4,
         "poliText": ["Juego", "Pequeño", "Figuras", "Simple"],
-        "badPoliText": ["Rosa", "Cocina", "Maquillaje", "Cuidado"],
+        "badPoliText": ["Rosa", "Cocina", "Maquillaje", "Cuidado de bebés"],
         "points": 0,
         "lastPoints": 0,
         "levelDescription": { "header": "Nivel 8", "body": "¡Oh no! Está mostrando imágenes que no tocan de juguetes para niñas.", "footer": "¡Rápido, hay que solucionarlo!" },
