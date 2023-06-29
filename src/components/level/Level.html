@@ -1,0 +1,16 @@
+<input type="search" :placeholder="props.placeholder" class="search_input" disabled>
+<div class="level">
+    <div class="imgbox">
+        <div class="images-container"
+            :class="{ 'two-columns': imagesToShow.length === 4, 'three-columns': imagesToShow.length >= 6, 'three-rows': imagesToShow.length > 6 }">
+            <img v-for="i in imagesToShow.length" :src="imagesToShow[i - 1]">
+        </div>
+    </div>
+    <div class="poligons" ref="poligons">
+        <poligon v-for="pol in poligonsDict" :poliForm="pol['form']" :text="pol['text']" @click="isOnSquare"
+            class="poligon" />
+        <div class="basura">
+            <img src="https://cdn.icon-icons.com/icons2/1791/PNG/512/trashcan1_114647.png">
+        </div>
+    </div>
+</div>
