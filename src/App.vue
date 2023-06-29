@@ -261,11 +261,11 @@ h3 {
   grid-row: 2;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
+  gap: 15px;
   grid-template-rows: repeat(2, 1fr);
   place-items: center;
-  height: 60vh;
-  width: 50%;
+  height: 65vh;
+  width: 65%;
 }
 
 .level-container {
@@ -355,11 +355,11 @@ h3 {
   width: 100%;
   height: 100%;
   content: attr(data-level);
-  font-size: 313px;
+  font-size: 322px;
   color: white;
   opacity: 0.2;
-  right: -19px;
-  top: 110px;
+  right: -45px;
+  top: 124px;
   line-height: 0;
 }
 
