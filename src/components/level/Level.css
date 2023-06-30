@@ -3,10 +3,11 @@
     grid-auto-columns: minmax(0, 1fr);
     grid-auto-flow: column;
     grid-template-rows: minmax(0, 1fr);
-    grid-column-gap: 2px;
+    grid-column-gap: 50px;
     grid-row-gap: 0px;
     margin-top: 5px;
-    height: 70vh;
+    height: 600px;
+    width: 1400px;
 }
 
 .imbox {
@@ -54,6 +55,7 @@
     background-position: 95% center;
     border-radius: 50px;
     border: 1px solid #575756;
+    height: 50px;
 }
 
 .poligons {

@@ -145,7 +145,7 @@ function setTotalPoints() {
     </Teleport>
   </div>
 
-  <div v-show="isLevel">
+  <div class="levelScreen" v-show="isLevel">
     <Teleport to="body">
       <modal :show="showLevelInfo">
         <template #header>
@@ -169,26 +169,26 @@ function setTotalPoints() {
     <div class="levelButtons">
       <button @click="isLevel = false; stopClock();">Atrás</button>
       <button @click="$refs.level.setPoints(); setTotalPoints(); showEndLevel = true; stopClock();">Finalizar</button>
-      <Teleport to="body">
-        <modal :show="showEndLevel">
-          <template #header>
-            <h1 v-if="levels[levelNum]['lastPoints'] != 0">{{ levels[levelNum]['endLevelDescription']['header'] }}</h1>
-            <h1 v-else>¡Cuidado!</h1>
-          </template>
-          <template #body>
-            <p v-if="levels[levelNum]['lastPoints'] != 0">{{ levels[levelNum]['endLevelDescription']['body'] }}</p>
-            <p v-else>Sigue habiendo problemas con el algoritmo.</p>
-          </template>
-          <template #footer>
-            <p v-if="levels[levelNum]['lastPoints'] != 0">{{ levels[levelNum]['endLevelDescription']['footer'] }}</p>
-            <p v-else>¡Sigue intentándolo!</p>
-            <button class="modal-default-button" @click="showEndLevel = false; isLevel = false;">Acabar</button>
-            <button class="modal-default-button"
-              @click="$refs.level.resetLevel(); startClock(); showEndLevel = false;">Reintentar</button>
-          </template>
-        </modal>
-      </Teleport>
     </div>
+    <Teleport to="body">
+      <modal :show="showEndLevel">
+        <template #header>
+          <h1 v-if="levels[levelNum]['lastPoints'] != 0">{{ levels[levelNum]['endLevelDescription']['header'] }}</h1>
+          <h1 v-else>¡Cuidado!</h1>
+        </template>
+        <template #body>
+          <p v-if="levels[levelNum]['lastPoints'] != 0">{{ levels[levelNum]['endLevelDescription']['body'] }}</p>
+          <p v-else>Sigue habiendo problemas con el algoritmo.</p>
+        </template>
+        <template #footer>
+          <p v-if="levels[levelNum]['lastPoints'] != 0">{{ levels[levelNum]['endLevelDescription']['footer'] }}</p>
+          <p v-else>¡Sigue intentándolo!</p>
+          <button class="modal-default-button" @click="showEndLevel = false; isLevel = false;">Acabar</button>
+          <button class="modal-default-button"
+            @click="$refs.level.resetLevel(); startClock(); showEndLevel = false;">Reintentar</button>
+        </template>
+      </modal>
+    </Teleport>
   </div>
 </template>
 
@@ -242,19 +242,19 @@ h3 {
   width: 100%;
 }
 
-.level-box-points > div {
+.level-box-points>div {
   font-size: 14px;
-    font-family: system-ui, -apple-system, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-weight: 500;
-    color: white;
+  font-family: system-ui, -apple-system, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  color: white;
 }
 
 .level-box-header {
   font-size: 20px;
-    font-family: system-ui, -apple-system, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-weight: 500;
-    text-align: center;
-    color: white;
+  font-family: system-ui, -apple-system, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  text-align: center;
+  color: white;
 }
 
 .levelsButtons {
@@ -278,35 +278,35 @@ h3 {
 }
 
 .level-container:nth-child(1) {
-  background: rgba(237,85,101,1)
+  background: rgba(237, 85, 101, 1)
 }
 
 .level-container:nth-child(2) {
-  background: rgba(252,110,81,1)
+  background: rgba(252, 110, 81, 1)
 }
 
 .level-container:nth-child(3) {
-  background: rgba(255,206,84,1)
+  background: rgba(255, 206, 84, 1)
 }
 
 .level-container:nth-child(4) {
-  background: rgba(46,204,113,1)
+  background: rgba(46, 204, 113, 1)
 }
 
 .level-container:nth-child(5) {
-  background: rgba(79,193,233,1)
+  background: rgba(79, 193, 233, 1)
 }
 
 .level-container:nth-child(6) {
-  background: rgba(93,156,236,1)
+  background: rgba(93, 156, 236, 1)
 }
 
 .level-container:nth-child(7) {
-  background: rgba(172,146,236,1)
+  background: rgba(172, 146, 236, 1)
 }
 
 .level-container:nth-child(8) {
-  background: rgba(128,103,183,1)
+  background: rgba(128, 103, 183, 1)
 }
 
 .level-box {
@@ -318,8 +318,6 @@ h3 {
   align-items: start;
   justify-content: space-between;
 }
-
-
 
 .progress {
   margin-top: 5px;
@@ -365,7 +363,7 @@ h3 {
 
 .totalPoints {
   background: white;
-  padding: 20px;
+  padding: 15px;
   margin: 10px 0;
   border-radius: 8px;
   border: 1px solid rgba(0, 0, 0, 0.2);
@@ -388,11 +386,9 @@ h3 {
 
 .backAndEnd {
   display: grid;
-  position: absolute;
   grid-template-columns: repeat(2, 1fr);
-  bottom: 5%;
-  /* right: 50%; */
   column-gap: 100px;
+  padding: 20px;
 }
 
 /* button */
@@ -421,7 +417,8 @@ button {
   -webkit-user-select: none;
   touch-action: manipulation;
   vertical-align: baseline;
-  width: auto;
+  width: 200px;
+  height: 75px;
 }
 
 button:hover,
@@ -445,25 +442,23 @@ button:active {
 
 /* Level */
 .time {
-  align-self: center;
   font-family: 'digital-clock-font';
-  font-size: xx-large;
-  margin: 1%;
+  background: white;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 45px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  min-width: 200px;
+  height: 35px;
   text-align: center;
-  text-decoration-color: #F0F0F1;
-  background-color: whitesmoke;
-  border: solid 1px grey;
-  border-radius: 16px;
-  width: 10%;
+  font-size: 40px;
+  font-weight: 500;
 }
 
 .levelButtons {
   display: grid;
-  position: absolute;
   grid-template-columns: repeat(2, 1fr);
-  bottom: 10%;
-  right: 50%;
-  column-gap: 100%;
+  column-gap: 100px;
 }
 
 @font-face {
@@ -474,5 +469,12 @@ button:active {
 .noHover {
   pointer-events: none;
   background-color: #ffffff81;
+}
+
+.levelScreen {
+  display: grid;
+  grid-template-rows: 0.1fr 0.1fr 1fr 0.1fr;
+  grid-auto-flow: row dense;
+  justify-items: center;
 }
 </style>
